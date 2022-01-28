@@ -3,6 +3,7 @@
 
 Blacksmith's tools is not a hard dependency, the mod will work without it. You'll just run into armors clipping with player body.  
 The mod makes no use of blacksmith's tool's bone reoder, you may disable it if you wish.  
+Use the mod on a server to sync configs.  
 In case of questions you may find me on the [Modding discord server](https://discord.gg/MXqWrn532w)
 
 ## Features
