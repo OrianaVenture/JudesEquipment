@@ -63,16 +63,6 @@ namespace JudesEquipment.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] crusader {
-            get {
-                object obj = ResourceManager.GetObject("crusader", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] judeequipment {
             get {
                 object obj = ResourceManager.GetObject("judeequipment", resourceCulture);

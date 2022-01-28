@@ -28,20 +28,10 @@ namespace JudesEquipment
                     if (child.gameObject.name == "female" && viseq.GetModelIndex() == 0)
                     {
                         child.gameObject.SetActive(false);
-                        /*SkinnedMeshRenderer[] smrs = child.GetComponentsInChildren<SkinnedMeshRenderer>();
-                        foreach (SkinnedMeshRenderer smr in smrs)
-                        {
-                            smr.enabled = false;
-                        }*/
                     }
                     if (child.gameObject.name == "male" && viseq.GetModelIndex() == 1)
                     {
                         child.gameObject.SetActive(false);
-                        /*SkinnedMeshRenderer[] smrs = child.GetComponentsInChildren<SkinnedMeshRenderer>();
-                        foreach (SkinnedMeshRenderer smr in smrs)
-                        {
-                            smr.enabled = false;
-                        }*/
                     }
                 }
             }

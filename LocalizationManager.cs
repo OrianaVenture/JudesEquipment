@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BepInEx;
 using JudesEquipment.Configuration;
+using YamlDotNet.Serialization;
 
 namespace JudesEquipment
 {
@@ -11,7 +14,6 @@ namespace JudesEquipment
     {
         public static Localization localizationInstance;
 
-        public static List<LocalizationConfig> localizationCfgs = new List<LocalizationConfig>();
         public static readonly List<string> languages = new List<string>()
         {
             "English",
@@ -50,19 +52,43 @@ namespace JudesEquipment
             "Ukrainian"
         };
 
-        public static void AddLocalizationCfg(LocalizationConfig cfg)
+        public static void LoadLocalization()
         {
-            localizationCfgs.Add(cfg);
-            cfg.Load();
+            var files = Directory.GetFiles(Paths.ConfigPath, Main.localizationFileName, SearchOption.AllDirectories).ToList();
+
+            if(files.Count == 0)
+            {
+                File.WriteAllText(Path.Combine(Paths.ConfigPath, Main.localizationFileName), new SerializerBuilder().Build().Serialize(Main.localization));
+                return;
+            }
+
+            try
+            {
+                var d = new DeserializerBuilder().Build();
+                var loadedLocalization = new Dictionary<string, Dictionary<string, string>>();
+                loadedLocalization = d.Deserialize<Dictionary<string, Dictionary<string, string>>>(File.ReadAllText(files[0]));
+
+                Main.localization.Clear();
+                Main.localization = loadedLocalization;
+                Main.syncedLocalization.Value = new SerializerBuilder().Build().Serialize(loadedLocalization);
+            }
+            catch (Exception e)
+            {
+                Main.log.LogError(e.Message);
+                Main.log.LogError(e.StackTrace);
+            }
         }
 
         public static void InsertLocalization()
         {
             if (LocalizationManager.localizationInstance == null) return;
 
-            for (int i = 0; i < localizationCfgs.Count; i++)
+            string language = localizationInstance.GetSelectedLanguage();
+            if (!Main.localization.ContainsKey(language)) return;
+            foreach (KeyValuePair<string, string> localization in Main.localization[language])
             {
-                localizationCfgs[i].ApplyConfig();
+                localizationInstance.m_translations.Remove(localization.Key);
+                localizationInstance.m_translations.Add(localization.Key, localization.Value);
             }
         }
     }

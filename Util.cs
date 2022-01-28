@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BepInEx.Bootstrap;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -28,38 +30,14 @@ namespace JudesEquipment
 
         public static readonly int[] CompleteLegs = LegUpperLeft.Concat(LegLowerLeft).Concat(FootLeft).Concat(LegUpperRight).Concat(LegLowerRight).Concat(FootRight).ToArray();
 
-        public static GameObject PullGoFromAB(string goName, AssetBundle bundle)
-        {
-            return bundle.LoadAsset<GameObject>(goName);
-        }
-
         public static AssetBundle LoadBundle(string bundleName)
         {
             return  AssetBundle.LoadFromStream(Main.assembly.GetManifestResourceStream(Main.assembly.GetName().Name + ".Resources." + bundleName));
         }
 
-        public static bool IsBsmithAvailable()
+        public static bool IsModAvailable(string modName, string minVersion, bool printAllMods = false)
         {
-            Type type = Type.GetType("BlacksmithTools.BodypartSystem,BlacksmithTools");
-            if (type != null)
-            {
-                Main.log.LogMessage("Blacksmith's tools found.");
-                return true;
-            }
-            else
-            {
-                Main.log.LogWarning("Blacksmith's tools not found.");
-                return false;
-            }
-        }
-
-        public static GameObject FindInOdb(string prefabName, ObjectDB odb)
-        {
-            foreach (GameObject prefab in odb.m_items)
-            {
-                if (prefab.name == prefabName) return prefab;
-            }
-            return null;
+            return Chainloader.PluginInfos.Values.ToList().Find(_modName => _modName.Metadata.Name == modName)?.Metadata.Version >= new System.Version(minVersion);
         }
 
         public static List<HitData.DamageModPair> ParseDmgModPairs(string def)
@@ -80,11 +58,13 @@ namespace JudesEquipment
 
                     dmgModPairs.Add(new HitData.DamageModPair() { m_type = dmgType, m_modifier = dmgMod });
                 }
-
+                
                 return dmgModPairs;
             }
             catch(Exception e)
             {
+                Main.log.LogError("An error occured when parsing damge modifiers");
+
                 Main.log.LogError(e.Message);
                 return new List<HitData.DamageModPair>();
             }

@@ -24,50 +24,37 @@ namespace JudesEquipment
             return cloneContainer;
         }
 
-        public static List<ItemConfig> customItems = new List<ItemConfig>();
+        public static List<PrefabConfig> prefabs = new List<PrefabConfig>();
         public static List<StatusEffect> customSEs = new List<StatusEffect>();
         public static List<BlacksmithsToolsConfig> bsmithCfgs = new List<BlacksmithsToolsConfig>();
 
-        public static void AddItem(ItemConfig cfg)
-        {
-            //if (customItems.Find(c => c.configHeader == cfg.configHeader)?.configHeader == cfg.configHeader) Main.log.LogWarning(cfg.configHeader + " already exists in configlist");
-            //customItems.Remove(cfg);
-            customItems.Add(cfg);
-            cfg.Load();
-        }
-
-        public static void ApplyConfigs()
-        {
-            customItems.ForEach(item => item.ApplyConfig());
-        }
-
         public static void AddItemsToODB(ObjectDB odb)
         {
-            ApplyConfigs();
-            foreach(ItemConfig item in customItems)
+            LoadPrefabsFromBundle();
+            foreach(PrefabConfig prefab in prefabs)
             {
-                if (item.prefab == null) continue;
+                if (prefab.GetPrefab() == null) continue;
 
-                if (!odb.m_itemByHash.ContainsKey(item.prefab.name.GetStableHashCode()))
+                if (!odb.m_itemByHash.ContainsKey(prefab.GetPrefab().name.GetStableHashCode()))
                 {
-                    odb.m_itemByHash.Add(item.prefab.name.GetStableHashCode(), item.prefab);
+                    odb.m_itemByHash.Add(prefab.GetPrefab().name.GetStableHashCode(), prefab.GetPrefab());
                 }
 
-                if (!odb.m_items.Contains(item.prefab))
+                if (!odb.m_items.Contains(prefab.GetPrefab()))
                 {
-                    odb.m_items.Add(item.prefab);
+                    odb.m_items.Add(prefab.GetPrefab());
                 }
 
                 if (ZNetScene.instance != null)
                 {
-                    if (!ZNetScene.instance.m_prefabs.Contains(item.prefab))
+                    if (!ZNetScene.instance.m_prefabs.Contains(prefab.GetPrefab()))
                     {
-                        ZNetScene.instance.m_prefabs.Add(item.prefab);
+                        ZNetScene.instance.m_prefabs.Add(prefab.GetPrefab());
                     }
 
-                    if (!ZNetScene.instance.m_namedPrefabs.ContainsKey(item.prefab.name.GetStableHashCode()))
+                    if (!ZNetScene.instance.m_namedPrefabs.ContainsKey(prefab.GetPrefab().name.GetStableHashCode()))
                     {
-                        ZNetScene.instance.m_namedPrefabs.Add(item.prefab.name.GetStableHashCode(), item.prefab);
+                        ZNetScene.instance.m_namedPrefabs.Add(prefab.GetPrefab().name.GetStableHashCode(), prefab.GetPrefab());
                     }
                 }
             }
@@ -77,7 +64,7 @@ namespace JudesEquipment
 
         public static void InsertBsmithToolsCfgs()
         {
-            if (Util.IsBsmithAvailable())
+            if (Main.bsmithAvailable)
             {
                 Type type = Type.GetType("BlacksmithTools.BodypartSystem,BlacksmithTools");
 
@@ -97,5 +84,55 @@ namespace JudesEquipment
                 }
             }
         }
+
+        static void LoadPrefabsFromBundle()
+        {
+            AssetBundle bundle = Util.LoadBundle(Main.bundleName);
+
+            ItemManager.prefabs.Clear();
+            allPrefabs.ForEach(_prefab => ItemManager.prefabs.Add(new PrefabConfig()
+            {
+                prefab = bundle.LoadAsset<GameObject>(_prefab)
+            }));
+            bundle.Unload(false);
+        }
+
+        public static readonly List<string> allPrefabs = new List<string>()
+        {
+            "ArmorBarbarianBronzeHelmetJD",
+            "ArmorBarbarianBronzeChestJD",
+            "ArmorBarbarianBronzeLegsJD",
+            "ArmorBarbarianCapeJD",
+
+            "ArmorPlateIronHelmetJD",
+            "ArmorPlateIronChestJD",
+            "ArmorPlateIronLegsJD",
+            "ArmorPlateCape",
+
+            "ArmorDragonslayerHelmet",
+            "ArmorDragonslayerChest",
+            "ArmorDragonslayerLegs",
+
+            "ArmorWandererHelmet",
+            "ArmorWandererChest",
+            "ArmorWandererLegs",
+            "ArmorWandererCape",
+
+            "ArmorBlackmetalgarbHelmet",
+            "ArmorBlackmetalgarbChest",
+            "ArmorBlackmetalgarbLegs",
+
+            "ArmorSerpentHelmet",
+            "ArmorSerpentChest",
+            "ArmorSerpentLegs",
+            "ArmorSerpentCape",
+
+            "ArmorMistlandsHelmet",
+            "ArmorMistlandsChest",
+            "ArmorMistlandsLegs", 
+
+            "BackpackSimple",
+            "BackpackHeavy"
+        };
     }
 }

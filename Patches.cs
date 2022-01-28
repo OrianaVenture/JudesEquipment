@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using HarmonyLib;
-using Unity.Collections;
-using Unity.Jobs;
 using UnityEngine;
 
 namespace JudesEquipment
@@ -14,13 +8,22 @@ namespace JudesEquipment
     [HarmonyPatch]
     static class Patches
     {
+        public static IEnumerator DelayedRecipeInsertion()
+        {
+            yield return null;
+
+            Main.modConfig.ApplyRecipeConfigs();
+        }
 
         [HarmonyPatch(typeof(ObjectDB), nameof(ObjectDB.CopyOtherDB))]
         [HarmonyPostfix]
         static void CopyOtherDb_patch(ObjectDB __instance, ObjectDB other)
         {
+            Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
+
             ItemManager.AddItemsToODB(__instance);
-            __instance.StartCoroutine(RecipeManager.DelayedRecipeInsertion());
+            Main.modConfig.ApplyArmorConfigs();
+            __instance.StartCoroutine(DelayedRecipeInsertion());
         }
 
         [HarmonyPatch(typeof(ObjectDB), nameof(ObjectDB.Awake))]
@@ -28,42 +31,30 @@ namespace JudesEquipment
         static void DbAwake_patch(ObjectDB __instance)
         {
             ItemManager.AddItemsToODB(__instance);
-            __instance.StartCoroutine(RecipeManager.DelayedRecipeInsertion());
-
+            Main.modConfig.ApplyArmorConfigs();
+            __instance.StartCoroutine(DelayedRecipeInsertion());
+            Main.modConfig.ApplySetEffects();
         }
-
-        //loading localization at fejd startup now, should solve all conflicts with people calling localization instance too early
-        /*[HarmonyPatch(typeof(Localization), nameof(Localization.SetupLanguage))]
-        [HarmonyPostfix]
-        static void SetupLanguage_patch(string language, ref Dictionary<string, string> ___m_translations, List<string> ___m_languages)
-        {
-            LocalizationManager.LoadConfigs(___m_languages);
-            LocalizationManager.InsertLocalization(language, ref ___m_translations);
-
-            Main.log.LogWarning("trying to load locaization");
-        }*/
 
         [HarmonyPatch(typeof(FejdStartup), nameof(FejdStartup.SetupGui))]
         [HarmonyPostfix]
         static void FejdSetupGui_patch()
         {
+            Main.LoadModConfig();
             LocalizationManager.localizationInstance = Localization.instance;
+            LocalizationManager.LoadLocalization();
             LocalizationManager.InsertLocalization();
         }
 
-        /*[HarmonyPatch(typeof(VisEquipment), nameof(VisEquipment.AttachItem))]
-        [HarmonyPostfix]
-        static void SetEarsSkinColor(VisEquipment __instance, ref GameObject __result, int itemHash)
+        //screenshot patches
+        /*[HarmonyPatch(typeof(CharacterAnimEvent), nameof(CharacterAnimEvent.UpdateHeadRotation))]
+        [HarmonyPrefix]
+        static bool brush()
         {
-            if(itemHash == "HeadElf".GetStableHashCode())
-            {
-                UnityEngine.Debug.LogWarning("equipped ears");
-                GameObject ears = __result.transform.Find("ElfSkin").gameObject;
-                ears.GetComponent<MeshRenderer>().material = __instance.m_bodyModel.material;
-            }
-        }*/
+            return false;
+        }
 
-        /*[HarmonyPatch(typeof(GameCamera), nameof(GameCamera.GetCameraPosition))]
+        [HarmonyPatch(typeof(GameCamera), nameof(GameCamera.GetCameraPosition))]
         [HarmonyPostfix]
         static void ScrenShotMode_patch(ref Vector3 pos)
         {

@@ -6,87 +6,94 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using ServerSync;
+using YamlDotNet.Serialization;
 
 namespace JudesEquipment.Configuration
 {
-    public class ArmorConfig : ItemConfig
+    public class ArmorConfig
     {
-        /*
-        def_Armor,
-        def_ArmorPerLevel,
-        def_BaseDurability,
-        def_DurabilityPerLevel,
-        def_MovementSpeedModifier,
-        def_MaxUpgradeLvl,
-        def_EquipTime
-         */
+        [YamlMember(Alias = "item prefab name")]
+        public string prefabName = string.Empty;
+        [YamlMember(Alias = "required for set bonus")]
+        public bool countsTowardsSetBonus = true;
 
-        public ConfigEntry<int> armor, armorPerLevel, baseDurability, durabilityPerLevel, movementSpeedModifier, maxUpgradeLvl;
-        public ConfigEntry<float> equipTime;
-        public ConfigEntry<bool> destroyBroken, repairable;
-        public ConfigEntry<string> damageModPairs;
+        public int armor = 0;
+        [YamlMember(Alias = "armor per level")]
+        public int armorPerLevel = 2;
 
-        /*public SyncedConfigEntry<int> armor, armorPerLevel, baseDurability, durabilityPerLevel, movementSpeedModifier, maxUpgradeLvl;
-        public SyncedConfigEntry<float> equipTime;
-        public SyncedConfigEntry<bool> destroyBroken, repairable;
-        public SyncedConfigEntry<string> damageModPairs;*/
+        [YamlMember(Alias = "enable durability")]
+        public bool enableDurability = true;
+        public int baseDurability = 1000;
+        [YamlMember(Alias = "durability per level")]
+        public int durabilityPerLevel = 200;
+        public bool repairable = true;
+        [YamlMember(Alias = "destroy when broken")]
+        public bool destroyBroken = false;
 
-        public int def_Armor, def_ArmorPerLevel = 2, def_BaseDurability = 1000, def_DurabilityPerLevel = 200, def_MovementSpeedModifier = -5, def_MaxUpgradeLvl = 4;
-        public float def_EquipTime = 1;
-        public bool def_destroyBroken = false, def_repairable = true;
-        public string def_damageModPairs;
+        public int weight = 0;
+        public bool teleportable = true;
+        [YamlMember(Alias = "maximum upgrade level")]
+        public int maxUpgradeLevel = 4;
 
-        public override bool Load()
+        [YamlMember(Alias = "movement speed modifier")]
+        public int movementSpeedModifier = 0;
+
+        //Valid damage type names: Blunt, Slash, Pierce, Chop, Pickaxe, Fire, Frost, Lightning, Poison, Spirit, Physical, Elemental ... Valid modifier names: Normal, Resistant, Weak, Immune, Ignore, VeryResistant, VeryWeak
+        [YamlMember(Alias = "damage modifiers")]
+        public Dictionary<string, string> damageModifiers = new Dictionary<string, string>()
         {
-            if (!base.Load()) return false;
+            { HitData.DamageType.Physical.ToString(), "none" },
+            { HitData.DamageType.Blunt.ToString(), "none" },
+            { HitData.DamageType.Slash.ToString(), "none" },
+            { HitData.DamageType.Pierce.ToString(), "none" },
+            { HitData.DamageType.Chop.ToString(), "none" },
+            { HitData.DamageType.Fire.ToString(), "none" },
+            { HitData.DamageType.Frost.ToString(), "none" },
+            { HitData.DamageType.Lightning.ToString(), "none" },
+            { HitData.DamageType.Poison.ToString(), "none" },
+            { HitData.DamageType.Spirit.ToString(), "none" },
+            { HitData.DamageType.Elemental.ToString(), "none" }
 
-            maxUpgradeLvl =             Sync.SyncConfig(cfg.Bind(configHeader, "Maximum upgrade level",     def_MaxUpgradeLvl, ""));
-            armor =                     Sync.SyncConfig(cfg.Bind(configHeader, "Base Armor",                def_Armor, ""));
-            armorPerLevel =             Sync.SyncConfig(cfg.Bind(configHeader, "Armor per level",           def_ArmorPerLevel));
-            damageModPairs =            Sync.SyncConfig(cfg.Bind(configHeader, "Damage modifiers",          def_damageModPairs, "Damage modifiers are in the format: [DamageType1]:[DamageModifier1];[DamageType2]:[DamageModifier2]; ... Valid damage type names: Blunt, Slash, Pierce, Chop, Pickaxe, Fire, Frost, Lightning, Poison, Spirit, Physical, Elemental ... Valid modifier names: Normal, Resistant, Weak, Immune, Ignore, VeryResistant, VeryWeak"));
-            destroyBroken =             Sync.SyncConfig(cfg.Bind(configHeader, "Destroy broken",            def_destroyBroken, ""));
-            repairable =                Sync.SyncConfig(cfg.Bind(configHeader, "Repairable",                def_repairable, ""));
-            baseDurability =            Sync.SyncConfig(cfg.Bind(configHeader, "Base durability",           def_BaseDurability, "Set to 0 for indestructibility "));
-            durabilityPerLevel =        Sync.SyncConfig(cfg.Bind(configHeader, "Durability per level",      def_DurabilityPerLevel, ""));
-            movementSpeedModifier =     Sync.SyncConfig(cfg.Bind(configHeader, "Movement speed modifier",   def_MovementSpeedModifier, ""));
-            equipTime =                 Sync.SyncConfig(cfg.Bind(configHeader, "Equip time",                def_EquipTime, ""));
+        };
 
-            maxUpgradeLvl.SettingChanged            += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_maxQuality =          maxUpgradeLvl.Value; };
-            armor.SettingChanged                    += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_armor =               armor.Value; };
-            armorPerLevel.SettingChanged            += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_armorPerLevel =       armorPerLevel.Value; };
-            damageModPairs.SettingChanged           += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_damageModifiers =     Util.ParseDmgModPairs(damageModPairs.Value); };
-            destroyBroken.SettingChanged            += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_destroyBroken =       destroyBroken.Value; };
-            repairable.SettingChanged               += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_canBeReparied =       repairable.Value; };
-            baseDurability.SettingChanged           += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_maxDurability =       baseDurability.Value; drop.m_itemData.m_shared.m_useDurability = baseDurability.Value != 0; };
-            durabilityPerLevel.SettingChanged       += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_durabilityPerLevel =  durabilityPerLevel.Value; };
-            movementSpeedModifier.SettingChanged    += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_movementModifier =    movementSpeedModifier.Value; };
-            equipTime.SettingChanged                += (object sender, EventArgs e) => { if (drop != null) drop.m_itemData.m_shared.m_equipDuration =       equipTime.Value; };
+        [YamlMember(Alias = "recipe")]
+        public RecipeConfig recipe = new RecipeConfig();
 
-            return true;
+        public void ApplyConfig()
+        {
+            ItemDrop.ItemData.SharedData stats = ItemManager.prefabs.Find(prefab => prefab.GetPrefab().name == prefabName)?.GetPrefab()?.GetComponent<ItemDrop>().m_itemData.m_shared;
+            if (stats == null) return;
+
+            stats.m_armor =                 armor;
+            stats.m_armorPerLevel =         armorPerLevel;
+            stats.m_damageModifiers =       ParseModPairs(damageModifiers);
+            stats.m_maxDurability =         baseDurability;
+            stats.m_durabilityPerLevel =    durabilityPerLevel;
+            stats.m_destroyBroken =         destroyBroken;
+            stats.m_canBeReparied =         repairable;
+            stats.m_movementModifier =      movementSpeedModifier / 100f;
+            stats.m_equipDuration =         1;
+            stats.m_maxQuality =            maxUpgradeLevel;
+
+            stats.m_useDurability =         enableDurability;
+
+            return;
         }
 
-        public override bool ApplyConfig()
+        public static List<HitData.DamageModPair> ParseModPairs(Dictionary<string, string> mods)
         {
-            if (base.ApplyConfig() == false) return false;
-            //itemdrop will always be filled in base class ItemConfig
-            ItemDrop.ItemData.SharedData stats = drop.m_itemData.m_shared;
+            List<HitData.DamageModPair> modPairs = new List<HitData.DamageModPair>();
+            foreach (KeyValuePair<string, string> mod in mods)
+            {
+                if (mod.Value.ToLower() == "none") continue;
 
-            stats.m_armor =                 armor.Value;
-            stats.m_armorPerLevel =         armorPerLevel.Value;
-            stats.m_damageModifiers =       Util.ParseDmgModPairs(damageModPairs.Value);
-            stats.m_maxDurability =         baseDurability.Value;
-            stats.m_durabilityPerLevel =    durabilityPerLevel.Value;
-            stats.m_destroyBroken =         destroyBroken.Value;
-            stats.m_canBeReparied =         repairable.Value;
-            stats.m_movementModifier =      movementSpeedModifier.Value / 100f;
-            stats.m_equipDuration =         equipTime.Value;
-            stats.m_maxQuality =            maxUpgradeLvl.Value;
+                HitData.DamageType dmgType = (HitData.DamageType)Enum.Parse(typeof(HitData.DamageType), mod.Key);
+                HitData.DamageModifier dmgMod = (HitData.DamageModifier)Enum.Parse(typeof(HitData.DamageModifier), mod.Value);
 
-            drop.m_itemData.m_durability = baseDurability.Value;
+                modPairs.Add(new HitData.DamageModPair() { m_type = dmgType, m_modifier = dmgMod });
+            }
 
-            stats.m_useDurability = baseDurability.Value != 0;
-
-            return true;
+            return modPairs;
         }
     }
 }
