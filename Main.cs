@@ -16,12 +16,6 @@ using YamlDotNet.Serialization;
 
 namespace JudesEquipment
 {
-    /*
-    TODO:
-    -serversync x
-    -touch up nomad and barbarian
-
-    */
     [BepInDependency("Jotunn", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("BlacksmithTools", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInPlugin(GUID, MODNAME, VERSION)]
