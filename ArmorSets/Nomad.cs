@@ -104,9 +104,9 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            pieces.Add("helmet", helmet);
-            pieces.Add("chest", chest);
-            pieces.Add("legs", legs);
+            items.Add("helmet", helmet);
+            items.Add("chest", chest);
+            items.Add("legs", legs);
         }
     }
 }

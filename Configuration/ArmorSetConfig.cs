@@ -12,16 +12,16 @@ namespace JudesEquipment.Configuration
     {
         [YamlMember(Alias = "set effect")]
         public SetEffect setEffect = new SetEffect();
-        public Dictionary<string, ArmorConfig> pieces = new Dictionary<string, ArmorConfig>();
+        public Dictionary<string, ArmorConfig> items = new Dictionary<string, ArmorConfig>();
 
         public void ApplyArmorConfigs()
         {
-            pieces.Values.ToList().ForEach(piece => piece.ApplyConfig());
+            items.Values.ToList().ForEach(piece => piece.ApplyConfig());
         }
 
         public void ApplyRecipeConfigs()
         {
-            pieces.Values.ToList().ForEach(piece => piece.recipe.ApplyConfig(piece.prefabName));
+            items.Values.ToList().ForEach(piece => piece.recipe.ApplyConfig(piece.prefabName));
         }
 
         public void ApplySetConfig(string effectName)
@@ -33,7 +33,7 @@ namespace JudesEquipment.Configuration
             {
                 effect = ScriptableObject.CreateInstance<SE_Stats>();
                 effect.name = effectName;
-                effect.m_icon = ObjectDB.instance.m_items.Find(iconSource => iconSource.name == pieces.Values.ToList()[0].prefabName).GetComponent<ItemDrop>().m_itemData.m_shared.m_icons[0];
+                effect.m_icon = ObjectDB.instance.m_items.Find(iconSource => iconSource.name == items.Values.ToList()[0].prefabName).GetComponent<ItemDrop>().m_itemData.m_shared.m_icons[0];
                 effect.m_name = "$" + Main.setEffectLocalizationToken;
                 ObjectDB.instance.m_StatusEffects.Add(effect);
                 ItemManager.customSEs.Add(effect);
@@ -48,7 +48,7 @@ namespace JudesEquipment.Configuration
             effect.m_runStaminaDrainModifier = setEffect.runStaminaDrainModifier / 100f;
             effect.m_jumpStaminaUseModifier = setEffect.jumpStaminaDrainModifier / 100f;
 
-            pieces.Values.ToList().ForEach(piece =>
+            items.Values.ToList().ForEach(piece =>
             {
                 if(piece.countsTowardsSetBonus)
                 {
@@ -63,7 +63,7 @@ namespace JudesEquipment.Configuration
         public int GetSetSize()
         {
             int size = 0;
-            foreach(ArmorConfig cfg in pieces.Values)
+            foreach(ArmorConfig cfg in items.Values)
             {
                 if (cfg.countsTowardsSetBonus) size += 1;
             }

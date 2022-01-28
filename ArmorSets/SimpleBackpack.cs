@@ -45,7 +45,7 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            pieces.Add("backpack", bag);
+            items.Add("backpack", bag);
         }
     }
 }

@@ -141,10 +141,10 @@ namespace JudesEquipment.ArmorSets
             };
             cape.damageModifiers[HitData.DamageType.Frost.ToString()] = HitData.DamageModifier.Resistant.ToString();
 
-            pieces.Add("helmet", helmet);
-            pieces.Add("chest", chest);
-            pieces.Add("legs", legs);
-            pieces.Add("cape", cape);
+            items.Add("helmet", helmet);
+            items.Add("chest", chest);
+            items.Add("legs", legs);
+            items.Add("cape", cape);
         }
     }
 }

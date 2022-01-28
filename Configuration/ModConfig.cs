@@ -37,7 +37,7 @@ namespace JudesEquipment.Configuration
 
         public void ApplySetEffects()
         {
-            armorSets.Values.ToList().ForEach(set => set.ApplySetConfig(set.pieces.Values.First().prefabName));
+            armorSets.Values.ToList().ForEach(set => set.ApplySetConfig(set.items.Values.First().prefabName));
         }
     }
 }

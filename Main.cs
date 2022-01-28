@@ -187,7 +187,7 @@ namespace JudesEquipment
             localization["English"].Add("ArmorMistlandsHelmet", "Scorched sallet");
             localization["English"].Add("ArmorMistlandsHelmet_description", "Helmet made from a rare material only found within the ashlands");
             localization["English"].Add("ArmorMistlandsChest", "Scorched armor");
-            localization["English"].Add("ArmorMistlandsChest_description", "Thick, multi layered gambeson provides protection from the searing heat of flametal, which in turns protects from blows");
+            localization["English"].Add("ArmorMistlandsChest_description", "Thick, multi layered gambeson provides protection from the searing heat of flametal, which in turn protects from blows");
             localization["English"].Add("ArmorMistlandsLegs", "Scorched greaves");
             localization["English"].Add("ArmorMistlandsLegs_description", "One need not fear the cold while wearing these");
 
