@@ -30,7 +30,7 @@ In case of questions you may find me on the [Modding discord server](https://dis
 
 #### Serpent armor and cape
 - crafted at a forge using blackmetal, silver, lox pelts, serpent scales and serpent trophies, cape at a workbench using silver and linen
-- legs have cloth physics if using HugoTheDwarf's ``More and Modified Player Cloth Colliders``
+- legs have cloth physics if using HugoTheDwarf's ``More and Modified Player Cloth Colliders`` mod
 
 #### Scorched armor
 - crafted at a forge using flametal, linen threads and lox pelts  
