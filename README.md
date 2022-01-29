@@ -52,14 +52,14 @@ After launching the game the mod will generate configuration files for items, re
 Modifiers for health regen, stamina regen and jump and sprint stamina drain are in percentages therefore ``health regen modifier: 25`` will increase health regen by 25%  
 Valid values for damage modifiers are: ``Ignore, Immune, Normal, Resistant, VeryResistant, VeryWeak, Weak``  
 List for Valheim's vanilla skill list: ``None, All, Axes, Blocking, Bows, Clubs, Jump, Knives, Pickaxes, Polearms, Ride, Run, Sneak, Spears, Swim, Swords, Unarmed, WoodCutting``  
-Names for crafting station and items can be found on the Valheim wiki under ``Internal ID``
+Names for crafting stations and items can be found on the Valheim wiki under ``Internal ID``
 
 ## Screenshots  
 
 ![Barbarian's armor](https://cdn.discordapp.com/attachments/889777555194912798/919176996771221534/barbarmor200.png)  
 ![Plate armor](https://cdn.discordapp.com/attachments/889777555194912798/901127892140978266/platev2.png)  
 ![Dragonslayer's armor](https://cdn.discordapp.com/attachments/889777555194912798/901127826428796938/dragonslayer.png)  
-![Nomad's armor](https://cdn.discordapp.com/attachments/889777555194912798/901127888592584734/nomadgarb.png)  
+![Nomad's armor](https://cdn.discordapp.com/attachments/889777555194912798/936890070789677106/nomad200.png)  
 ![Wanderer's armor](https://cdn.discordapp.com/attachments/889777555194912798/901127896784048189/wanderer.png)  
 ![Serpent armor](https://cdn.discordapp.com/attachments/889777555194912798/936555888087535647/serpent.png)
 ![Scorched armor](https://cdn.discordapp.com/attachments/830502805869559848/892789090154606682/20210929153749_1.jpg)  
