@@ -28,7 +28,7 @@ namespace JudesEquipment
         public static List<StatusEffect> customSEs = new List<StatusEffect>();
         public static List<BlacksmithsToolsConfig> bsmithCfgs = new List<BlacksmithsToolsConfig>();
 
-        public static void AddItemsToODB(ObjectDB odb)
+        public static void AddItemsToDBs(ObjectDB odb)
         {
             LoadPrefabsFromBundle();
             foreach(PrefabConfig prefab in prefabs)

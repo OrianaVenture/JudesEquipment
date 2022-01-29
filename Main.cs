@@ -37,12 +37,12 @@ namespace JudesEquipment
         #endregion
 
         public const string bundleName = "judeequipment";
-        public const string configName = "JudesEquipment_config.yml";
-        public const string localizationFileName = "JudesEquipment_localization.yml";
-        public const string setEffectLocalizationToken = "SetEffect";
+        public const string itemConfigName = GUID + "_ItemConfig.yml";
+        public const string localizationconfigName = GUID + "_Localization.yml";
+        //public const string setEffectLocalizationToken = "SetEffect";
 
-        public static CustomSyncedValue<string> syncedModConfig = new CustomSyncedValue<string>(Sync.configSync, "JE_config");
-        public static CustomSyncedValue<string> syncedLocalization = new CustomSyncedValue<string>(Sync.configSync, "JE_localization");
+        public static CustomSyncedValue<string> syncedModConfig = new CustomSyncedValue<string>(Sync.configSync, Path.GetFileNameWithoutExtension(itemConfigName));
+        public static CustomSyncedValue<string> syncedLocalization = new CustomSyncedValue<string>(Sync.configSync, Path.GetFileNameWithoutExtension(localizationconfigName));
         public static SyncedConfigEntry<int> lockingConfig;
         public static ConfigEntry<bool> neutralMetals;
         public static ConfigEntry<bool> smoothTextures;
@@ -50,7 +50,7 @@ namespace JudesEquipment
         public static bool bsmithAvailable = false;
         public static bool hugosCollidersAvaiable = false;
 
-        public static ModConfig modConfig = new ModConfig();
+        public static ItemConfig modConfig = new ItemConfig();
         public static Dictionary<string, Dictionary<string, string>> localization = new Dictionary<string, Dictionary<string, string>>()
         {
             { "English", new Dictionary<string, string>() }
@@ -88,10 +88,11 @@ namespace JudesEquipment
             smoothTextures = Config.Bind("Appearance", "Smooth textures", false, "Removes pixelization filter on all textures");
 
             CreateDefaultLocalization();
+            LocalizationManager.LoadLocalization();
 
             syncedModConfig.ValueChanged += () =>
             {
-                modConfig = new DeserializerBuilder().Build().Deserialize<ModConfig>(syncedModConfig.Value);
+                modConfig = new DeserializerBuilder().Build().Deserialize<ItemConfig>(syncedModConfig.Value);
                 modConfig.ApplyArmorConfigs();
                 modConfig.ApplyRecipeConfigs();
                 modConfig.ApplySetEffects();
@@ -106,11 +107,11 @@ namespace JudesEquipment
             {
                 if (!Sync.configSync.IsSourceOfTruth) return;
 
-                if (Path.GetFileName(e.FullPath) == configName)
+                if (Path.GetFileName(e.FullPath) == itemConfigName)
                 {
                     LoadModConfig();
                 }
-                if(Path.GetFileName(e.FullPath) == localizationFileName)
+                if(Path.GetFileName(e.FullPath) == localizationconfigName)
                 {
                     LocalizationManager.LoadLocalization();
                 }
@@ -119,20 +120,31 @@ namespace JudesEquipment
 
         public static void LoadModConfig()
         {
-            List<string> files = Directory.GetFiles(Paths.ConfigPath, configName, SearchOption.AllDirectories).ToList();
+            List<string> files = Directory.GetFiles(Paths.ConfigPath, itemConfigName, SearchOption.AllDirectories).ToList();
             if (files.Count == 0)
             {
-                File.WriteAllText(Path.Combine(Paths.ConfigPath, configName), new SerializerBuilder().Build().Serialize(modConfig));
+                File.WriteAllText(Path.Combine(Paths.ConfigPath, itemConfigName), new SerializerBuilder().Build().Serialize(modConfig));
                 return;
             }
 
-            modConfig = new DeserializerBuilder().Build().Deserialize<ModConfig>(File.ReadAllText(files[0]));
-            syncedModConfig.Value = new SerializerBuilder().Build().Serialize(modConfig);
+            ItemConfig loadedItemconfig = new ItemConfig();
+            try
+            {
+                loadedItemconfig = new DeserializerBuilder().Build().Deserialize<ItemConfig>(File.ReadAllText(files[0]));
+
+            }
+            catch (Exception e)
+            {
+                Main.log.LogWarning("An error occured when loading " + Main.itemConfigName + ", will use default values");
+                Main.log.LogWarning(e.Message);
+                Main.log.LogWarning(e.StackTrace);
+            }
+            syncedModConfig.Value = new SerializerBuilder().Build().Serialize(loadedItemconfig);
         }
 
         void CreateDefaultLocalization()
         {
-            localization["English"].Add(setEffectLocalizationToken, "Set effect");
+            //localization["English"].Add(setEffectLocalizationToken, "Set effect");
 
             localization["English"].Add("ArmorBarbarianBronzeHelmetJD", "Barbarian's helmet");
             localization["English"].Add("ArmorBarbarianBronzeHelmetJD_description", "Helmet made from a bronze alloy");
@@ -201,7 +213,6 @@ namespace JudesEquipment
         void CreateBlacksmithsTooslConfigs()
         {
             if (!bsmithAvailable) return;
-
 
             //blackmetalgarb
             ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()

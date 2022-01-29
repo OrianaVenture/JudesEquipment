@@ -13,11 +13,12 @@ namespace JudesEquipment.ArmorSets
         {
             setEffect = new SetEffect()
             {
-                runStaminaDrainModifier = -15,
+                staminaReregenModifier = 15,
+                carryWeightModifier = 50,
                 skillModifier = new SkillModifier()
                 {
-                    skill = Skills.SkillType.Run.ToString(),
-                    modifier = 25
+                    skill = Skills.SkillType.Swords.ToString(),
+                    modifier = 15
                 }
             };
 

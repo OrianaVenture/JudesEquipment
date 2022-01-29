@@ -42,7 +42,6 @@ namespace JudesEquipment.Configuration
         [YamlMember(Alias = "damage modifiers")]
         public Dictionary<string, string> damageModifiers = new Dictionary<string, string>()
         {
-            { HitData.DamageType.Physical.ToString(), "none" },
             { HitData.DamageType.Blunt.ToString(), "none" },
             { HitData.DamageType.Slash.ToString(), "none" },
             { HitData.DamageType.Pierce.ToString(), "none" },
@@ -51,8 +50,7 @@ namespace JudesEquipment.Configuration
             { HitData.DamageType.Frost.ToString(), "none" },
             { HitData.DamageType.Lightning.ToString(), "none" },
             { HitData.DamageType.Poison.ToString(), "none" },
-            { HitData.DamageType.Spirit.ToString(), "none" },
-            { HitData.DamageType.Elemental.ToString(), "none" }
+            { HitData.DamageType.Spirit.ToString(), "none" }
 
         };
 

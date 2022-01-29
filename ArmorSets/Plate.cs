@@ -24,14 +24,13 @@ namespace JudesEquipment.ArmorSets
 
             int armor = 18;
             int weight = 20;
-            int movementModifier = -7;
+            int movementModifier = -5;
 
             ArmorConfig helmet = new ArmorConfig()
             {
                 prefabName = "ArmorPlateIronHelmetJD",
                 armor = armor,
                 weight = weight,
-                movementSpeedModifier = movementModifier / 2,
                 recipe = new RecipeConfig()
                 {
                     station = "forge",
@@ -39,11 +38,11 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Iron", amount = 20, amountPerLevel = 3
+                            item = "Iron", amount = 20, amountPerLevel = 5
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "DeerHide", amount = 2, amountPerLevel = 0
+                            item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
                     }
                 }
@@ -62,11 +61,11 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Iron", amount = 20, amountPerLevel = 3
+                            item = "Iron", amount = 25, amountPerLevel = 8
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "DeerHide", amount = 2, amountPerLevel = 0
+                            item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
                     }
                 }
@@ -85,11 +84,11 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Iron", amount = 20, amountPerLevel = 3
+                            item = "Iron", amount = 25, amountPerLevel = 8
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "DeerHide", amount = 2, amountPerLevel = 0
+                            item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
                     }
                 }
@@ -101,6 +100,7 @@ namespace JudesEquipment.ArmorSets
                 armor = 4,
                 weight = 8,
                 movementSpeedModifier = -3,
+                countsTowardsSetBonus = false,
                 recipe = new RecipeConfig()
                 {
                     station = "piece_workbench",
@@ -116,7 +116,7 @@ namespace JudesEquipment.ArmorSets
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "LeatherScraps", amount = 5, amountPerLevel = 2
+                            item = "LeatherScraps", amount = 10, amountPerLevel = 5
                         }
                     }
                 }
@@ -125,6 +125,7 @@ namespace JudesEquipment.ArmorSets
             items.Add("helmet", helmet);
             items.Add("chest", chest);
             items.Add("legs", legs);
+            items.Add("cape", cape);
         }
     }
 }

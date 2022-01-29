@@ -44,7 +44,7 @@
     <Compile Include="ArmorSets\SimpleBackpack.cs" />
     <Compile Include="ArmorSets\Wanderer.cs" />
     <Compile Include="Configuration\ArmorSetConfig.cs" />
-    <Compile Include="Configuration\ModConfig.cs" />
+    <Compile Include="Configuration\ItemConfig.cs" />
     <Compile Include="Configuration\PrefabConfig.cs" />
     <Compile Include="Configuration\RecipeConfig.cs" />
     <Compile Include="Configuration\SetEffect.cs" />

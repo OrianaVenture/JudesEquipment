@@ -34,7 +34,7 @@ namespace JudesEquipment.Configuration
                 effect = ScriptableObject.CreateInstance<SE_Stats>();
                 effect.name = effectName;
                 effect.m_icon = ObjectDB.instance.m_items.Find(iconSource => iconSource.name == items.Values.ToList()[0].prefabName).GetComponent<ItemDrop>().m_itemData.m_shared.m_icons[0];
-                effect.m_name = "$" + Main.setEffectLocalizationToken;
+                //effect.m_name = "$" + Main.setEffectLocalizationToken;
                 ObjectDB.instance.m_StatusEffects.Add(effect);
                 ItemManager.customSEs.Add(effect);
             }

@@ -21,29 +21,41 @@ namespace JudesEquipment
         {
             Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
 
-            ItemManager.AddItemsToODB(__instance);
-            Main.modConfig.ApplyArmorConfigs();
-            __instance.StartCoroutine(DelayedRecipeInsertion());
+            ItemManager.AddItemsToDBs(__instance);
         }
 
         [HarmonyPatch(typeof(ObjectDB), nameof(ObjectDB.Awake))]
         [HarmonyPostfix]
         static void DbAwake_patch(ObjectDB __instance)
         {
-            ItemManager.AddItemsToODB(__instance);
-            Main.modConfig.ApplyArmorConfigs();
-            __instance.StartCoroutine(DelayedRecipeInsertion());
-            Main.modConfig.ApplySetEffects();
+            Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
+            
+            ItemManager.AddItemsToDBs(__instance);
+            Main.LoadModConfig();
+            LocalizationManager.LoadLocalization();
+            LocalizationManager.InsertLocalization();
         }
 
-        [HarmonyPatch(typeof(FejdStartup), nameof(FejdStartup.SetupGui))]
+        [HarmonyPatch(typeof(FejdStartup), nameof(FejdStartup.Start))]
         [HarmonyPostfix]
         static void FejdSetupGui_patch()
         {
-            Main.LoadModConfig();
             LocalizationManager.localizationInstance = Localization.instance;
-            LocalizationManager.LoadLocalization();
-            LocalizationManager.InsertLocalization();
+        }
+
+        [HarmonyPatch(typeof(Humanoid), nameof(Humanoid.HaveSetEffect))]
+        [HarmonyPostfix]
+        static void shitpatch(ItemDrop.ItemData item, Humanoid __instance, ref bool __result)
+        {
+            if (__result) return;
+            if(item == null) return;
+            if(item.m_dropPrefab == null) return;
+            if(ItemManager.allPrefabs.Contains(item.m_dropPrefab.name))
+            {
+                __result = item != null && !(item.m_shared.m_setStatusEffect == null) && 
+                    item.m_shared.m_setName.Length != 0 && item.m_shared.m_setSize > 0 &&
+                    __instance.GetSetCount(item.m_shared.m_setName) >= item.m_shared.m_setSize;
+            }
         }
 
         //screenshot patches

@@ -20,6 +20,7 @@ namespace JudesEquipment.ArmorSets
                     modifier = 30
                 }
             };
+            setEffect.damageModifiers[HitData.DamageType.Frost.ToString()] = HitData.DamageModifier.Resistant.ToString();
 
             int armor = 24;
             int weight = 20;
@@ -41,11 +42,11 @@ namespace JudesEquipment.ArmorSets
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "WolfPelt", amount = 10, amountPerLevel = 5
+                            item = "WolfPelt", amount = 10, amountPerLevel = 3
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Obsidian", amount = 10, amountPerLevel = 5
+                            item = "Obsidian", amount = 10, amountPerLevel = 3
                         },
                         new RecipeConfig.RequirementConfig()
                         {
@@ -72,11 +73,11 @@ namespace JudesEquipment.ArmorSets
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "WolfPelt", amount = 10, amountPerLevel = 5
+                            item = "WolfPelt", amount = 10, amountPerLevel = 3
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Obsidian", amount = 10, amountPerLevel = 5
+                            item = "Obsidian", amount = 10, amountPerLevel = 3
                         }
                     }
                 }
@@ -99,11 +100,11 @@ namespace JudesEquipment.ArmorSets
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "WolfPelt", amount = 10, amountPerLevel = 5
+                            item = "WolfPelt", amount = 10, amountPerLevel = 3
                         },
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Obsidian", amount = 10, amountPerLevel = 5
+                            item = "Obsidian", amount = 10, amountPerLevel = 3
                         }
                     }
                 }

@@ -54,11 +54,11 @@ namespace JudesEquipment
 
         public static void LoadLocalization()
         {
-            var files = Directory.GetFiles(Paths.ConfigPath, Main.localizationFileName, SearchOption.AllDirectories).ToList();
+            var files = Directory.GetFiles(Paths.ConfigPath, Main.localizationconfigName, SearchOption.AllDirectories).ToList();
 
             if(files.Count == 0)
             {
-                File.WriteAllText(Path.Combine(Paths.ConfigPath, Main.localizationFileName), new SerializerBuilder().Build().Serialize(Main.localization));
+                File.WriteAllText(Path.Combine(Paths.ConfigPath, Main.localizationconfigName), new SerializerBuilder().Build().Serialize(Main.localization));
                 return;
             }
 
@@ -74,8 +74,9 @@ namespace JudesEquipment
             }
             catch (Exception e)
             {
-                Main.log.LogError(e.Message);
-                Main.log.LogError(e.StackTrace);
+                Main.log.LogWarning("An error occured when loading localization");
+                Main.log.LogWarning(e.Message);
+                Main.log.LogWarning(e.StackTrace);
             }
         }
 
