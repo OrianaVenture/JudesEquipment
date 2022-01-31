@@ -62,6 +62,7 @@ namespace JudesEquipment.Configuration
             ItemDrop.ItemData.SharedData stats = ItemManager.prefabs.Find(prefab => prefab.GetPrefab().name == prefabName)?.GetPrefab()?.GetComponent<ItemDrop>().m_itemData.m_shared;
             if (stats == null) return;
 
+            stats.m_weight =                weight;
             stats.m_armor =                 armor;
             stats.m_armorPerLevel =         armorPerLevel;
             stats.m_damageModifiers =       ParseModPairs(damageModifiers);

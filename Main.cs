@@ -279,18 +279,6 @@ namespace JudesEquipment
                 itemName = "ArmorSerpentLegs",
                 bonesToHide = Util.CompleteLegs
             });
-
-            ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
-            {
-                itemName = "ArmorKnightChest",
-                bonesToHide = Util.TorsoUpperLowerArms
-            });
-
-            ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
-            {
-                itemName = "ArmorKnightLegs",
-                bonesToHide = Util.CompleteLegs
-            });
         }
     }
 }

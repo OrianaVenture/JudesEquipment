@@ -65,6 +65,8 @@ Names for crafting stations and items can be found on the Valheim wiki under ``I
 ![Scorched armor](https://cdn.discordapp.com/attachments/830502805869559848/892789090154606682/20210929153749_1.jpg)  
 
 ## Changelog  
+- **2.0.1**  
+Fixed configs not applying item weight   
 - **2.0.0**  
 Added Serpent armor set  
 Added Heavy backpack  
