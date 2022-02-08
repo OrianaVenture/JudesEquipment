@@ -86,7 +86,7 @@ namespace JudesEquipment
 
             lockingConfig = Sync.configSync.AddLockingConfigEntry(Config.Bind("Sync", "Sync configs", 1, "1 = enabled, 0 = disabled"));
             neutralMetals = Config.Bind("Appearance", "Neutral metals", false, "Makes all metals a neutral grey");
-            smoothTextures = Config.Bind("Appearance", "Smooth textures", false, "Removes pixelization filter on all textures");
+            smoothTextures = Config.Bind("Appearance", "Smooth textures", false, "Removes pixelization filter on all textures, overrides color config");
 
             CreateDefaultLocalization();
             LocalizationManager.LoadLocalization();
