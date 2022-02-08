@@ -12,6 +12,10 @@ In case of questions you may find me on the [Modding discord server](https://dis
 - crafted at a forge using bronze and deer hide, cape at a workbench using deer hide and bone fragments
 - light black forest tier armor set
 
+#### Warrior's armor
+- crafted at a forge using bronze and deer hide, chest additionally required stone and raspberries  
+- black forest tier armor set  
+
 #### Plate armor
 - crafted at a forge using iron and deer hide
 - swamp tier armor set
@@ -49,14 +53,18 @@ Place the JudesEquipment.dll into your Bepinex/plugins folder.
 
 ## Configuration
 After launching the game the mod will generate configuration files for items, recipes and localization  
+  
 Modifiers for health regen, stamina regen and jump and sprint stamina drain are in percentages therefore ``health regen modifier: 25`` will increase health regen by 25%  
 Valid values for damage modifiers are: ``Ignore, Immune, Normal, Resistant, VeryResistant, VeryWeak, Weak``  
 List for Valheim's vanilla skill list: ``None, All, Axes, Blocking, Bows, Clubs, Jump, Knives, Pickaxes, Polearms, Ride, Run, Sneak, Spears, Swim, Swords, Unarmed, WoodCutting``  
-Names for crafting stations and items can be found on the Valheim wiki under ``Internal ID``
+Names for crafting stations and items can be found on the Valheim wiki under ``Internal ID``  
+
+Each armor piece's metallic color can be adjusted in ``JudesEquipment_Colors.yml`` to fit custom materials, this config is not synced  
 
 ## Screenshots  
 
 ![Barbarian's armor](https://cdn.discordapp.com/attachments/889777555194912798/919176996771221534/barbarmor200.png)  
+![Warrior's armor](https://cdn.discordapp.com/attachments/889777555194912798/940650904791703592/warrior.png)  
 ![Plate armor](https://cdn.discordapp.com/attachments/889777555194912798/901127892140978266/platev2.png)  
 ![Dragonslayer's armor](https://cdn.discordapp.com/attachments/889777555194912798/901127826428796938/dragonslayer.png)  
 ![Nomad's armor](https://cdn.discordapp.com/attachments/889777555194912798/936890070789677106/nomad200.png)  
@@ -65,6 +73,13 @@ Names for crafting stations and items can be found on the Valheim wiki under ``I
 ![Scorched armor](https://cdn.discordapp.com/attachments/830502805869559848/892789090154606682/20210929153749_1.jpg)  
 
 ## Changelog  
+- **2.1.0**  
+Added Warrior's armor  
+Added ``JudesEquipment_Colors.yml`` config for changing the metallic color of armor parts  
+- **2.0.3**  
+Probably fixed the odd bug with chaos armor losing it's blacksmith's tools configs
+- **2.0.2**  
+Made localization fall back to English again
 - **2.0.1**  
 Fixed configs not applying item weight   
 - **2.0.0**  
@@ -109,6 +124,11 @@ Barbarian armor:
 - ArmorBarbarianBronzeChestJD  
 - ArmorBarbarianBronzeLegsJD  
 - ArmorBarbarianCapeJD  
+
+Warrior armor:  
+- ArmorWarriorHelmet  
+- ArmorWarriorChest  
+- ArmorWarriorLegs  
   
 Plate armor:  
 - ArmorPlateIronHelmetJD  
