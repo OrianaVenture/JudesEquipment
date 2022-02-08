@@ -14,6 +14,9 @@ namespace JudesEquipment.Configuration
         [YamlMember(Alias = "barbarian's armor")]
         public Barbarian barbarian = new Barbarian();
 
+        [YamlMember(Alias = "warrior's armor")]
+        public Warrior warrior = new Warrior();
+
         [YamlMember(Alias = "plate armor")]
         public Plate plate = new Plate();
 
@@ -42,6 +45,7 @@ namespace JudesEquipment.Configuration
         private List<ArmorSetConfig> Sets => new List<ArmorSetConfig>()
         {
             barbarian,
+            warrior,
             plate,
             dragonslayer,
             wanderer,

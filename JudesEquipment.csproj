@@ -43,6 +43,7 @@
     <Compile Include="ArmorSets\Serpent.cs" />
     <Compile Include="ArmorSets\SimpleBackpack.cs" />
     <Compile Include="ArmorSets\Wanderer.cs" />
+    <Compile Include="ArmorSets\Warrior.cs" />
     <Compile Include="Configuration\ArmorSetConfig.cs" />
     <Compile Include="Configuration\ItemConfig.cs" />
     <Compile Include="Configuration\PrefabConfig.cs" />

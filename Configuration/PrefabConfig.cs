@@ -58,6 +58,7 @@ namespace JudesEquipment.Configuration
             foreach (Renderer r in rs)
             {
                 List<Material> mats = new List<Material>();
+                int matIndex = 0;
                 foreach (Material mat in r.materials)
                 {
                     string[] textures = new string[] { "_MainTex", "_BumpMap", "_MetallicGlossMap", "_EmissionMap" };
@@ -80,6 +81,21 @@ namespace JudesEquipment.Configuration
                         metalColor = Color.grey;
                         emissionColor = Color.black;
                     }
+                    else
+                    {
+                        if(ItemManager.colorConfig.ContainsKey(prefab.name))
+                        {
+                            string colorKey = "Color " + (matIndex + 1).ToString();
+                            if (ItemManager.colorConfig[prefab.name].ContainsKey(colorKey))
+                            {
+                                ColorUtility.TryParseHtmlString(ItemManager.colorConfig[prefab.name][colorKey], out metalColor);
+                            }
+                            if(ItemManager.colorConfig[prefab.name].ContainsKey("Emission color"))
+                            {
+                                ColorUtility.TryParseHtmlString(ItemManager.colorConfig[prefab.name]["Emission color"], out emissionColor);
+                            }
+                        }
+                    }
 
                     replacerMat.SetColor("_Color", Color.white);
                     replacerMat.SetColor("_MetalColor", metalColor);
@@ -94,6 +110,8 @@ namespace JudesEquipment.Configuration
                         replacerMat.SetTexture(tex, defaultTex);
                     });
                     mats.Add(replacerMat);
+
+                    matIndex += 1;
                 }
                 r.materials = mats.ToArray();
             }

@@ -27,7 +27,7 @@ namespace JudesEquipment
             MODNAME = "JudesEquipment",
             AUTHOR = "GoldenJude",
             GUID = AUTHOR + "_" + MODNAME,
-            VERSION = "2.0.0";
+            VERSION = "2.1.0";
 
         public static ManualLogSource log;
         internal readonly Harmony harmony;
@@ -39,6 +39,7 @@ namespace JudesEquipment
         public const string bundleName = "judeequipment";
         public const string itemConfigName = GUID + "_ItemConfig.yml";
         public const string localizationconfigName = GUID + "_Localization.yml";
+        public const string colorConfigName = GUID + "_Colors.yml";
         //public const string setEffectLocalizationToken = "SetEffect";
 
         public static CustomSyncedValue<string> syncedModConfig = new CustomSyncedValue<string>(Sync.configSync, Path.GetFileNameWithoutExtension(itemConfigName));
@@ -77,11 +78,11 @@ namespace JudesEquipment
             bsmithAvailable = Util.IsModAvailable("BlacksmithTools", "2.0.0");
             hugosCollidersAvaiable = Util.IsModAvailable("More Player Cloth Colliders", "3.0.0");
             
-            if (bsmithAvailable)
+            /*if (bsmithAvailable)
             {
                 CreateBlacksmithsTooslConfigs();
                 ItemManager.InsertBsmithToolsCfgs();
-            }
+            }*/
 
             lockingConfig = Sync.configSync.AddLockingConfigEntry(Config.Bind("Sync", "Sync configs", 1, "1 = enabled, 0 = disabled"));
             neutralMetals = Config.Bind("Appearance", "Neutral metals", false, "Makes all metals a neutral grey");
@@ -89,6 +90,8 @@ namespace JudesEquipment
 
             CreateDefaultLocalization();
             LocalizationManager.LoadLocalization();
+
+            LoadColorConfig();
 
             syncedModConfig.ValueChanged += () =>
             {
@@ -116,6 +119,31 @@ namespace JudesEquipment
                     LocalizationManager.LoadLocalization();
                 }
             };
+        }
+
+        public static void LoadColorConfig()
+        {
+            List<string> list = Directory.GetFiles(Paths.ConfigPath, colorConfigName, SearchOption.AllDirectories).ToList<string>();
+            bool flag = list.Count == 0;
+            if (flag)
+            {
+                File.WriteAllText(Path.Combine(Paths.ConfigPath, colorConfigName), new SerializerBuilder().Build().Serialize(ItemManager.colorConfig));
+            }
+            else
+            {
+                var loadedColorConfig = new Dictionary<string, Dictionary<string, string>>();
+                try
+                {
+                    loadedColorConfig = new DeserializerBuilder().Build().Deserialize<Dictionary<string, Dictionary<string, string>>>(File.ReadAllText(list[0]));
+                    ItemManager.colorConfig = loadedColorConfig;
+                }
+                catch (Exception ex)
+                {
+                    Main.log.LogWarning("An error occured when loading " + colorConfigName + ", will use default values");
+                    Main.log.LogWarning(ex.Message);
+                    Main.log.LogWarning(ex.StackTrace);
+                }
+            }
         }
 
         public static void LoadModConfig()
@@ -154,6 +182,13 @@ namespace JudesEquipment
             localization["English"].Add("ArmorBarbarianBronzeLegsJD_description", "Thick hide wrapped around one's waist, fastened with a fashionable bronze belt");
             localization["English"].Add("ArmorBarbarianCapeJD", "Barbarian's fur cape");
             localization["English"].Add("ArmorBarbarianCapeJD_description", "Thick, short cape made from fur. Covers ones back when his drunk raidmates can't.");
+
+            localization["English"].Add("ArmorWarriorHelmet", "Warrior's helmet");
+            localization["English"].Add("ArmorWarriorHelmet_description", "Chainmail wrapping around the neck provides good protection");
+            localization["English"].Add("ArmorWarriorChest", "Warrior's hauberk");
+            localization["English"].Add("ArmorWarriorChest_description", "Long vest made from linked chains");
+            localization["English"].Add("ArmorWarriorLegs", "Warrior's boots");
+            localization["English"].Add("ArmorWarriorLegs_description", "Multi-layered pants keep it's wearer warm and protected");
 
             localization["English"].Add("ArmorPlateIronHelmetJD", "Sturdy helmet");
             localization["English"].Add("ArmorPlateIronHelmetJD_description", "A sturdy helmet with a leather neckguard");
@@ -210,7 +245,7 @@ namespace JudesEquipment
             localization["English"].Add("BackpackHeavy_description", "Large chest hauled on ones shoulders with a canvas bag for additional storage");
         }
 
-        void CreateBlacksmithsTooslConfigs()
+        public static void CreateBlacksmithsTooslConfigs()
         {
             if (!bsmithAvailable) return;
 
@@ -229,6 +264,12 @@ namespace JudesEquipment
             ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
             {
                 itemName = "ArmorBarbarianBronzeLegsJD",
+                bonesToHide = Util.CompleteLegs
+            });
+
+            ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
+            {
+                itemName = "ArmorWarriorLegs",
                 bonesToHide = Util.CompleteLegs
             });
 

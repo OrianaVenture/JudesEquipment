@@ -29,7 +29,13 @@ namespace JudesEquipment
         static void DbAwake_patch(ObjectDB __instance)
         {
             Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
-            
+
+            if (Main.bsmithAvailable)
+            {
+                Main.CreateBlacksmithsTooslConfigs();
+                ItemManager.InsertBsmithToolsCfgs();
+            }
+
             ItemManager.AddItemsToDBs(__instance);
             Main.LoadModConfig();
             LocalizationManager.LoadLocalization();

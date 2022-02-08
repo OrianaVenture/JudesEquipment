@@ -85,7 +85,12 @@ namespace JudesEquipment
             if (LocalizationManager.localizationInstance == null) return;
 
             string language = localizationInstance.GetSelectedLanguage();
+            if (!Main.localization.ContainsKey(language))
+            {
+                language = "English";
+            }
             if (!Main.localization.ContainsKey(language)) return;
+
             foreach (KeyValuePair<string, string> localization in Main.localization[language])
             {
                 localizationInstance.m_translations.Remove(localization.Key);

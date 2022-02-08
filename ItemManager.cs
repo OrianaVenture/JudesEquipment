@@ -27,8 +27,40 @@ namespace JudesEquipment
         public static List<PrefabConfig> prefabs = new List<PrefabConfig>();
         public static List<StatusEffect> customSEs = new List<StatusEffect>();
         public static List<BlacksmithsToolsConfig> bsmithCfgs = new List<BlacksmithsToolsConfig>();
+        public static Dictionary<string, Dictionary<string, string>> colorConfig = new Dictionary<string, Dictionary<string, string>>
+		{
+			{ "ArmorBarbarianBronzeHelmetJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
+			{ "ArmorBarbarianBronzeChestJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
+			{ "ArmorBarbarianBronzeLegsJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
 
-        public static void AddItemsToDBs(ObjectDB odb)
+			{ "ArmorWarriorHelmet", new Dictionary<string, string> { { "Color 1", "#FF892A" } } }, 
+			{ "ArmorWarriorChest", new Dictionary<string, string> { { "Color 1", "#FF892A" } } },
+
+			{ "ArmorPlateIronHelmetJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+			{ "ArmorPlateIronChestJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+			{ "ArmorPlateIronLegsJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+
+			{ "ArmorDragonslayerHelmet", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+			{ "ArmorDragonslayerChest", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+			{ "ArmorDragonslayerLegs", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+
+			{ "ArmorWandererChest", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+			{ "ArmorWandererLegs", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+
+			{ "ArmorBlackmetalgarbHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+			{ "ArmorBlackmetalgarbChest", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+			{ "ArmorBlackmetalgarbLegs", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+
+			{ "ArmorSerpentHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+			{ "ArmorSerpentChest", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+			{ "ArmorSerpentLegs", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+
+			{ "ArmorMistlandsHelmet", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
+			{ "ArmorMistlandsChest", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
+			{ "ArmorMistlandsLegs", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } }
+		};
+
+		public static void AddItemsToDBs(ObjectDB odb)
         {
             LoadPrefabsFromBundle();
             foreach(PrefabConfig prefab in prefabs)
@@ -103,6 +135,10 @@ namespace JudesEquipment
             "ArmorBarbarianBronzeChestJD",
             "ArmorBarbarianBronzeLegsJD",
             "ArmorBarbarianCapeJD",
+
+            "ArmorWarriorHelmet",
+            "ArmorWarriorChest",
+            "ArmorWarriorLegs",
 
             "ArmorPlateIronHelmetJD",
             "ArmorPlateIronChestJD",
