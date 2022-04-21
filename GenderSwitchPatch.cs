@@ -22,9 +22,11 @@ namespace JudesEquipment
         {
             foreach (GameObject go in equip)
             {
+                if (go == null) continue;
                 for (int i = 0; i < go.transform.childCount; i++)
                 {
                     Transform child = go.transform.GetChild(i);
+                    if (child == null) continue;
                     if (child.gameObject.name == "female" && viseq.GetModelIndex() == 0)
                     {
                         child.gameObject.SetActive(false);

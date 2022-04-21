@@ -58,7 +58,7 @@ namespace JudesEquipment
 			{ "ArmorMistlandsHelmet", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
 			{ "ArmorMistlandsChest", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
 			{ "ArmorMistlandsLegs", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } }
-		};
+        };
 
 		public static void AddItemsToDBs(ObjectDB odb)
         {
@@ -131,6 +131,11 @@ namespace JudesEquipment
 
         public static readonly List<string> allPrefabs = new List<string>()
         {
+            "ArmorNobleHelmet",
+            "ArmorNobleChest",
+            "ArmorNobleLegs",
+            "ArmorNobleCape",
+
             "ArmorBarbarianBronzeHelmetJD",
             "ArmorBarbarianBronzeChestJD",
             "ArmorBarbarianBronzeLegsJD",

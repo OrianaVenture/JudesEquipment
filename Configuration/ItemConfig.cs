@@ -10,7 +10,10 @@ using JudesEquipment.ArmorSets;
 namespace JudesEquipment.Configuration
 {
     public class ItemConfig
-    {
+    { 
+        [YamlMember(Alias = "noble's armor")]
+        public Noble noble = new Noble();
+
         [YamlMember(Alias = "barbarian's armor")]
         public Barbarian barbarian = new Barbarian();
 
@@ -41,9 +44,11 @@ namespace JudesEquipment.Configuration
         [YamlMember(Alias = "heavy backpack")]
         public HeavyBackpack heavyBackpack = new HeavyBackpack();
 
+        //dont forget to add set here aswell
         [YamlIgnore]
         private List<ArmorSetConfig> Sets => new List<ArmorSetConfig>()
         {
+            noble,
             barbarian,
             warrior,
             plate,

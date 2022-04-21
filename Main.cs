@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using ServerSync;
 using BepInEx.Configuration;
@@ -21,20 +19,15 @@ namespace JudesEquipment
     [BepInPlugin(GUID, MODNAME, VERSION)]
     public class Main : BaseUnityPlugin
     {
-        #region[Bepinex stuff]
-
         public const string
             MODNAME = "JudesEquipment",
             AUTHOR = "GoldenJude",
             GUID = AUTHOR + "_" + MODNAME,
-            VERSION = "2.1.0";
+            VERSION = "2.2.0";
 
         public static ManualLogSource log;
         internal readonly Harmony harmony;
         public static Assembly assembly;
-        public readonly string modFolder;
-
-        #endregion
 
         public const string bundleName = "judeequipment";
         public const string itemConfigName = GUID + "_ItemConfig.yml";
@@ -69,7 +62,6 @@ namespace JudesEquipment
             log = Logger;
             harmony = new Harmony(GUID);
             assembly = Assembly.GetExecutingAssembly();
-            modFolder = Path.GetDirectoryName(assembly.Location);
         }
 
         public void Start()
@@ -168,11 +160,46 @@ namespace JudesEquipment
                 Main.log.LogWarning(e.StackTrace);
             }
             syncedModConfig.Value = new SerializerBuilder().Build().Serialize(loadedItemconfig);
+
+            try
+            {
+                if (!ConfigHasAllArmors(File.ReadAllText(files[0])))
+                {
+                    File.WriteAllText(Path.Combine(Paths.ConfigPath, itemConfigName), new SerializerBuilder().Build().Serialize(modConfig));
+                }
+            }
+            catch(Exception e)
+            {
+                Main.log.LogWarning("failed to validate if item config fil contains all sets, error: " + Environment.NewLine + e.Message);
+            }
+        }
+
+        static bool ConfigHasAllArmors(string configJson)
+        {
+            List<FieldInfo> fields = typeof(ItemConfig).GetFields().ToList();
+            List<FieldInfo> itemFields = fields.Where(field => field.CustomAttributes.First(att => att.AttributeType == typeof(YamlMemberAttribute)) != null).ToList();
+            foreach(FieldInfo field in itemFields)
+            {
+                CustomAttributeData yamlAttribute = field.CustomAttributes.First(att => att.AttributeType == typeof(YamlMemberAttribute));
+                string alias = (string)yamlAttribute.NamedArguments.First(na => na.MemberName == nameof(YamlMemberAttribute.Alias)).TypedValue.Value;
+
+                if (!configJson.Contains(alias)) return false;
+            }
+            return true;
         }
 
         void CreateDefaultLocalization()
         {
             //localization["English"].Add(setEffectLocalizationToken, "Set effect");
+
+            localization["English"].Add("ArmorNobleHelmet", "Fur hat");
+            localization["English"].Add("ArmorNobleHelmet_description", "Fashionable hat with fur lining");
+            localization["English"].Add("ArmorNobleChest", "Noble's banner garb");
+            localization["English"].Add("ArmorNobleChest_description", "A garb stitched together from banners torn from your burial chamber, a good alternative to roaming Valheim bare");
+            localization["English"].Add("ArmorNobleLegs", "Noble's pants");
+            localization["English"].Add("ArmorNobleLegs_description", "Worn, loose pants from a past life where one could afford to feast more often");
+            localization["English"].Add("ArmorNobleCape", "Vegvisir cape");
+            localization["English"].Add("ArmorNobleCape_description", "Cape fashioned from a vegvisir banner");
 
             localization["English"].Add("ArmorBarbarianBronzeHelmetJD", "Barbarian's helmet");
             localization["English"].Add("ArmorBarbarianBronzeHelmetJD_description", "Helmet made from a bronze alloy");
@@ -249,6 +276,18 @@ namespace JudesEquipment
         {
             if (!bsmithAvailable) return;
 
+            //nobruh armor
+            ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
+            {
+                itemName = "ArmorNobleChest",
+                bonesToHide = Util.TorsoUpperLowerArms
+            });
+            ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
+            {
+                itemName = "ArmorNobleLegs",
+                bonesToHide = Util.CompleteLegs
+            });
+
             //blackmetalgarb
             ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
             {
@@ -260,6 +299,7 @@ namespace JudesEquipment
                 itemName = "ArmorBlackmetalgarbLegs",
                 bonesToHide = Util.CompleteLegs
             });
+
             //barbarian legs
             ItemManager.bsmithCfgs.Add(new BlacksmithsToolsConfig()
             {

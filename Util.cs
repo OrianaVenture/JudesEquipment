@@ -71,3 +71,41 @@ namespace JudesEquipment
         }
     }
 }
+
+/*
+public static Texture2D duplicateTexture(Texture2D source)
+{
+    if (source == null) return null;
+
+    RenderTexture renderTex = RenderTexture.GetTemporary(
+                source.width,
+                source.height,
+                0,
+                RenderTextureFormat.Default,
+                RenderTextureReadWrite.sRGB);
+
+    Graphics.Blit(source, renderTex);
+    RenderTexture previous = RenderTexture.active;
+    RenderTexture.active = renderTex;
+    Texture2D readableText = new Texture2D(source.width, source.height);
+    readableText.filterMode = FilterMode.Point;
+    readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+    readableText.Apply();
+    RenderTexture.active = previous;
+    RenderTexture.ReleaseTemporary(renderTex);
+    readableText.name = source.name;
+    return readableText;
+}
+
+public static Vector2Int GetProperCoordinate(float sizeOne, float sizeTwo, Vector2 desiredIndex)
+{
+    Vector2 coord = Vector2.zero;
+
+    float diff = sizeOne / sizeTwo;
+
+    int x = Mathf.RoundToInt(desiredIndex.x / diff);
+    int y = Mathf.RoundToInt(desiredIndex.y / diff);
+
+    return new Vector2Int(x, y);
+}
+*/

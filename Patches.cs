@@ -70,13 +70,14 @@ namespace JudesEquipment
         static bool brush()
         {
             return false;
-        }
-
+        }*/
+        /*
         [HarmonyPatch(typeof(GameCamera), nameof(GameCamera.GetCameraPosition))]
         [HarmonyPostfix]
         static void ScrenShotMode_patch(ref Vector3 pos)
         {
             pos.y -= 1;
-        }*/
+        }
+        */
     }
 }
