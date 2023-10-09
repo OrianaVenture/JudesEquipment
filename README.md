@@ -83,7 +83,7 @@ Each armor piece's metallic color can be adjusted in ``JudesEquipment_Colors.yml
 ![Scorched armor](https://i.imgur.com/2pUbuUI.jpg)  
 
 ## Changelog  
-- **2.2.3 (i guess)**
+- **2.2.4 (i guess)**
 Updated ServerSync  
 Recompiled for new latest Valheim update  
 - **2.2.1**  
