@@ -5,7 +5,7 @@ Blacksmith's tools is not a hard dependency, the mod will work without it. You'l
 The mod makes no use of blacksmith's tool's bone reoder, you may disable it if you wish.  
 Use the mod on a server to sync configs.  
 Using [Hugo's more and modified cloth colliders](https://valheim.thunderstore.io/package/HugotheDwarf/More_and_Modified_Player_Cloth_Colliders/) improves some armor's cloth physics  
-In case of questions you may find me on the [Odin Plus discord server](https://discord.gg/Pb6bVMnFb2)
+In case of questions you may find me on the [Valheim Modding Server](https://discord.gg/R5STtpnJc6) or you can open an issue over at [GitHub](https://github.com/GoldenJude/JudesEquipment)
 
 ## Features
 
