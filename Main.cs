@@ -23,7 +23,7 @@ namespace JudesEquipment
             MODNAME = "JudesEquipment",
             AUTHOR = "GoldenJude",
             GUID = AUTHOR + "_" + MODNAME,
-            VERSION = "2.2.3";
+            VERSION = "2.2.4";
 
         public static ManualLogSource log;
         internal readonly Harmony harmony;
