@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using HarmonyLib;
 using UnityEngine;
 
@@ -19,7 +18,9 @@ namespace JudesEquipment
         [HarmonyPostfix]
         static void CopyOtherDb_patch(ObjectDB __instance, ObjectDB other)
         {
-            Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
+            Main.creatureShader = __instance.m_items?
+                .Find(_item => _item.name == "ArmorIronChest")?
+                .GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
 
             ItemManager.AddItemsToDBs(__instance);
         }
@@ -28,7 +29,9 @@ namespace JudesEquipment
         [HarmonyPostfix]
         static void DbAwake_patch(ObjectDB __instance)
         {
-            Main.creatureShader = __instance.m_items?.Find(_item => _item.name == "ArmorIronChest")?.GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
+            Main.creatureShader = __instance.m_items?
+                .Find(_item => _item.name == "ArmorIronChest")?
+                .GetComponentInChildren<SkinnedMeshRenderer>(true)?.material?.shader;
 
             if (Main.bsmithAvailable)
             {
@@ -63,21 +66,5 @@ namespace JudesEquipment
                     __instance.GetSetCount(item.m_shared.m_setName) >= item.m_shared.m_setSize;
             }
         }
-
-        //screenshot patches
-        /*[HarmonyPatch(typeof(CharacterAnimEvent), nameof(CharacterAnimEvent.UpdateHeadRotation))]
-        [HarmonyPrefix]
-        static bool brush()
-        {
-            return false;
-        }*/
-        /*
-        [HarmonyPatch(typeof(GameCamera), nameof(GameCamera.GetCameraPosition))]
-        [HarmonyPostfix]
-        static void ScrenShotMode_patch(ref Vector3 pos)
-        {
-            pos.y -= 1;
-        }
-        */
     }
 }

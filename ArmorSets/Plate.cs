@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JudesEquipment.ArmorSets;
+﻿using System.Collections.Generic;
 using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
@@ -39,7 +35,7 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Flametal", amount = 20, amountPerLevel = 5
+                            item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
                         new RecipeConfig.RequirementConfig()
                         {
@@ -66,7 +62,7 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Flametal", amount = 20, amountPerLevel = 5
+                            item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
                         new RecipeConfig.RequirementConfig()
                         {
@@ -93,7 +89,7 @@ namespace JudesEquipment.ArmorSets
                     {
                         new RecipeConfig.RequirementConfig()
                         {
-                            item = "Flametal", amount = 20, amountPerLevel = 5
+                            item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
                         new RecipeConfig.RequirementConfig()
                         {

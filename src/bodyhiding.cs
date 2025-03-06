@@ -1,13 +1,8 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace BlacksmithWares
+namespace JudesEquipment.BlacksmithWares
 {
     [HarmonyPatch]
     class bodyhiding
@@ -21,7 +16,5 @@ namespace BlacksmithWares
             Main.log.LogWarning("ended creation");
             return skinMask;
         }
-
-
     }
 }

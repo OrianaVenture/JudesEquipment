@@ -35,21 +35,6 @@ namespace JudesEquipment.Configuration
             { HitData.DamageType.Spirit.ToString(), "none" }
 
         };
-        /*public Dictionary<string, string> damageModifiers = new Dictionary<string, string>()
-        {
-            { HitData.DamageType.Physical.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Blunt.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Slash.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Pierce.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Chop.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Fire.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Frost.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Lightning.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Poison.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Spirit.ToString(), HitData.DamageModifier.Normal.ToString() },
-            { HitData.DamageType.Elemental.ToString(), HitData.DamageModifier.Normal.ToString() }
-
-        };*/
     }
 
     public class SkillModifier

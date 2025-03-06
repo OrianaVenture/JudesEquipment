@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BepInEx;
 using YamlDotNet.Serialization;
 using JudesEquipment.ArmorSets;
 

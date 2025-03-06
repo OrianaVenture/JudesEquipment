@@ -1,11 +1,5 @@
-﻿using BepInEx.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using ServerSync;
 using YamlDotNet.Serialization;
 
 namespace JudesEquipment.Configuration
@@ -38,7 +32,8 @@ namespace JudesEquipment.Configuration
         [YamlMember(Alias = "movement speed modifier")]
         public int movementSpeedModifier = 0;
 
-        //Valid damage type names: Blunt, Slash, Pierce, Chop, Pickaxe, Fire, Frost, Lightning, Poison, Spirit, Physical, Elemental ... Valid modifier names: Normal, Resistant, Weak, Immune, Ignore, VeryResistant, VeryWeak
+        // Valid damage type names: Blunt, Slash, Pierce, Chop, Pickaxe, Fire, Frost, Lightning, Poison, Spirit, Physical, Elemental
+        // Valid modifier names: Normal, Resistant, Weak, Immune, Ignore, VeryResistant, VeryWeak
         [YamlMember(Alias = "damage modifiers")]
         public Dictionary<string, string> damageModifiers = new Dictionary<string, string>()
         {
@@ -59,7 +54,8 @@ namespace JudesEquipment.Configuration
 
         public void ApplyConfig()
         {
-            ItemDrop.ItemData.SharedData stats = ItemManager.prefabs.Find(prefab => prefab.GetPrefab().name == prefabName)?.GetPrefab()?.GetComponent<ItemDrop>().m_itemData.m_shared;
+            ItemDrop.ItemData.SharedData stats = ItemManager.prefabs.Find(prefab =>
+                prefab.GetPrefab().name == prefabName)?.GetPrefab()?.GetComponent<ItemDrop>().m_itemData.m_shared;
             if (stats == null) return;
 
             stats.m_weight =                weight;
