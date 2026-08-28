@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using YamlDotNet.Serialization;
 
 namespace JudesEquipment.Configuration
@@ -28,12 +24,12 @@ namespace JudesEquipment.Configuration
             { HitData.DamageType.Slash.ToString(), "none" },
             { HitData.DamageType.Pierce.ToString(), "none" },
             { HitData.DamageType.Chop.ToString(), "none" },
+            { HitData.DamageType.Pickaxe.ToString(), "none" },
             { HitData.DamageType.Fire.ToString(), "none" },
             { HitData.DamageType.Frost.ToString(), "none" },
             { HitData.DamageType.Lightning.ToString(), "none" },
             { HitData.DamageType.Poison.ToString(), "none" },
             { HitData.DamageType.Spirit.ToString(), "none" }
-
         };
     }
 

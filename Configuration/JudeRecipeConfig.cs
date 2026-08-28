@@ -4,7 +4,7 @@ using YamlDotNet.Serialization;
 
 namespace JudesEquipment.Configuration
 {
-    public class RecipeConfig
+    public class JudeRecipeConfig
     {
         public class RequirementConfig
         {
@@ -50,7 +50,7 @@ namespace JudesEquipment.Configuration
             ItemDrop item = ItemManager.prefabs.Find(_prefab => _prefab.GetPrefab().name == prefabName)?.GetPrefab()?.GetComponent<ItemDrop>();
             if (item == null) return;
 
-            if(createNew)
+            if (createNew)
             {
                 recipe = ScriptableObject.CreateInstance<Recipe>();
                 recipe.name = recipeName;
@@ -70,6 +70,7 @@ namespace JudesEquipment.Configuration
                 Piece.Requirement req = reqCfg.GetRequirement();
                 if (req != null) resolvedRequirements.Add(req);
             });
+
             recipe.m_resources = resolvedRequirements.ToArray();
 
             return;

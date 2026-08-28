@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class Noble : ArmorSetConfig
+    public class Noble : JudeArmorSetConfig
     {
         public Noble()
         {
@@ -27,21 +27,21 @@ namespace JudesEquipment.ArmorSets
             int recipeItem2Amount = 2;
             int recipeItem2AmountPerLevel = 1;
 
-            ArmorConfig helmet = new ArmorConfig()
+            JudeArmorConfig helmet = new JudeArmorConfig()
             {
                 prefabName = "ArmorNobleHelmet",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = craftingStation,
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem1, amount = recipeItem1Amount, amountPerLevel = recipeItem1AmountPerLevel
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem2, amount = recipeItem2Amount, amountPerLevel = recipeItem2AmountPerLevel
                         }
@@ -49,21 +49,21 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig chest = new ArmorConfig()
+            JudeArmorConfig chest = new JudeArmorConfig()
             {
                 prefabName = "ArmorNobleChest",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = craftingStation,
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem1, amount = recipeItem1Amount, amountPerLevel = recipeItem1AmountPerLevel
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem2, amount = recipeItem2Amount, amountPerLevel = recipeItem2AmountPerLevel
                         }
@@ -71,21 +71,21 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig legs = new ArmorConfig()
+            JudeArmorConfig legs = new JudeArmorConfig()
             {
                 prefabName = "ArmorNobleLegs",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = craftingStation,
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem1, amount = recipeItem1Amount, amountPerLevel = recipeItem1AmountPerLevel
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem2, amount = recipeItem2Amount, amountPerLevel = recipeItem2AmountPerLevel
                         }
@@ -93,18 +93,18 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig cape = new ArmorConfig()
+            JudeArmorConfig cape = new JudeArmorConfig()
             {
                 prefabName = "ArmorNobleCape",
                 armor = 1,
                 weight = 1,
                 countsTowardsSetBonus = false,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = craftingStation,
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = recipeItem1, amount = recipeItem1Amount, amountPerLevel = recipeItem1AmountPerLevel
                         }

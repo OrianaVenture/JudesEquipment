@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class Scorched : ArmorSetConfig
+    public class Scorched : JudeArmorSetConfig
     {
         public Scorched()
         {
@@ -23,25 +23,25 @@ namespace JudesEquipment.ArmorSets
             int weight = 20;
             int movementModifier = -5;
 
-            ArmorConfig helmet = new ArmorConfig()
+            JudeArmorConfig helmet = new JudeArmorConfig()
             {
                 prefabName = "ArmorMistlandsHelmet",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LoxPelt", amount = 10, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 10, amountPerLevel = 3
                         }
@@ -49,26 +49,26 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig chest = new ArmorConfig()
+            JudeArmorConfig chest = new JudeArmorConfig()
             {
                 prefabName = "ArmorMistlandsChest",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LoxPelt", amount = 10, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 10, amountPerLevel = 3
                         }
@@ -76,26 +76,26 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig legs = new ArmorConfig()
+            JudeArmorConfig legs = new JudeArmorConfig()
             {
                 prefabName = "ArmorMistlandsLegs",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "FlametalNew", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LoxPelt", amount = 10, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 10, amountPerLevel = 3
                         }

@@ -4,7 +4,7 @@ using YamlDotNet.Serialization;
 
 namespace JudesEquipment.Configuration
 {
-    public class ArmorConfig
+    public class JudeArmorConfig
     {
         [YamlMember(Alias = "item prefab name")]
         public string prefabName = string.Empty;
@@ -41,6 +41,7 @@ namespace JudesEquipment.Configuration
             { HitData.DamageType.Slash.ToString(), "none" },
             { HitData.DamageType.Pierce.ToString(), "none" },
             { HitData.DamageType.Chop.ToString(), "none" },
+            { HitData.DamageType.Pickaxe.ToString(), "none" },
             { HitData.DamageType.Fire.ToString(), "none" },
             { HitData.DamageType.Frost.ToString(), "none" },
             { HitData.DamageType.Lightning.ToString(), "none" },
@@ -50,7 +51,7 @@ namespace JudesEquipment.Configuration
         };
 
         [YamlMember(Alias = "recipe")]
-        public RecipeConfig recipe = new RecipeConfig();
+        public JudeRecipeConfig recipe = new JudeRecipeConfig();
 
         public void ApplyConfig()
         {
@@ -82,8 +83,8 @@ namespace JudesEquipment.Configuration
             {
                 if (mod.Value.ToLower() == "none") continue;
 
-                HitData.DamageType dmgType = (HitData.DamageType)Enum.Parse(typeof(HitData.DamageType), mod.Key);
-                HitData.DamageModifier dmgMod = (HitData.DamageModifier)Enum.Parse(typeof(HitData.DamageModifier), mod.Value);
+                HitData.DamageType dmgType = (HitData.DamageType)Enum.Parse(typeof(HitData.DamageType), mod.Key, ignoreCase: true);
+                HitData.DamageModifier dmgMod = (HitData.DamageModifier)Enum.Parse(typeof(HitData.DamageModifier), mod.Value, ignoreCase: true);
 
                 modPairs.Add(new HitData.DamageModPair() { m_type = dmgType, m_modifier = dmgMod });
             }

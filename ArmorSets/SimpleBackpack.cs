@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class SimpleBackpack : ArmorSetConfig
+    public class SimpleBackpack : JudeArmorSetConfig
     {
         public SimpleBackpack()
         {
@@ -12,7 +12,7 @@ namespace JudesEquipment.ArmorSets
                 carryWeightModifier = 100
             };
 
-            ArmorConfig bag = new ArmorConfig()
+            JudeArmorConfig bag = new JudeArmorConfig()
             {
                 prefabName = "BackpackSimple",
                 armor = 0,
@@ -20,20 +20,20 @@ namespace JudesEquipment.ArmorSets
                 movementSpeedModifier = -5,
                 baseDurability = 10,
                 durabilityPerLevel = 10,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "piece_workbench",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Wood", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 5, amountPerLevel = 2
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LeatherScraps", amount = 10, amountPerLevel = 5
                         }

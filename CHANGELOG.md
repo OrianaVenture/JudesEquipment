@@ -1,3 +1,10 @@
+## 3.0.0 JOTUNN PORT
+
+* Updated for game version 1.0.15
+* New external dependency for Jotunn. You must install this for the mod to function!
+* Custom configurations currently not supported.
+* Fixes an issue when logging out and back in multiple times in the same game session.
+
 ## 2.3.0
 * Updated ServerSync to version 1.18.
 * New external dependency for YamlDotNet 16.3.0. You must install this for the mod to function!

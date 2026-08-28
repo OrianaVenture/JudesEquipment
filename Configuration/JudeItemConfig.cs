@@ -5,7 +5,7 @@ using JudesEquipment.ArmorSets;
 
 namespace JudesEquipment.Configuration
 {
-    public class ItemConfig
+    public class JudeItemConfig
     { 
         [YamlMember(Alias = "noble's armor")]
         public Noble noble = new Noble();
@@ -42,7 +42,7 @@ namespace JudesEquipment.Configuration
 
         //dont forget to add set here aswell
         [YamlIgnore]
-        private List<ArmorSetConfig> Sets => new List<ArmorSetConfig>()
+        private List<JudeArmorSetConfig> Sets => new List<JudeArmorSetConfig>()
         {
             noble,
             barbarian,

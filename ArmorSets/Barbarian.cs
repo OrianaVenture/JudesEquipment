@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class Barbarian : ArmorSetConfig
+    public class Barbarian : JudeArmorSetConfig
     {
         public Barbarian()
         {
@@ -20,21 +20,21 @@ namespace JudesEquipment.ArmorSets
             int armor = 4;
             int weight = 10;
 
-            ArmorConfig helmet = new ArmorConfig()
+            JudeArmorConfig helmet = new JudeArmorConfig()
             {
                 prefabName = "ArmorBarbarianBronzeHelmetJD",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Bronze", amount = 5, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 2, amountPerLevel = 0
                         }
@@ -42,21 +42,21 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig chest = new ArmorConfig()
+            JudeArmorConfig chest = new JudeArmorConfig()
             {
                 prefabName = "ArmorBarbarianBronzeChestJD",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Bronze", amount = 5, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 2, amountPerLevel = 0
                         }
@@ -64,21 +64,21 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig legs = new ArmorConfig()
+            JudeArmorConfig legs = new JudeArmorConfig()
             {
                 prefabName = "ArmorBarbarianBronzeLegsJD",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Bronze", amount = 5, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 2, amountPerLevel = 0
                         }
@@ -86,27 +86,27 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig cape = new ArmorConfig()
+            JudeArmorConfig cape = new JudeArmorConfig()
             {
                 prefabName = "ArmorBarbarianCapeJD",
                 armor = 4,
                 weight = 6,
                 movementSpeedModifier = -3,
                 countsTowardsSetBonus = false,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "piece_workbench",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 8, amountPerLevel = 4
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Bronze", amount = 1, amountPerLevel = 1
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "BoneFragments", amount = 5, amountPerLevel = 3
                         }

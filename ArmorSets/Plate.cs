@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class Plate : ArmorSetConfig
+    public class Plate : JudeArmorSetConfig
     {
         public Plate()
         {
@@ -21,21 +21,21 @@ namespace JudesEquipment.ArmorSets
             int weight = 20;
             int movementModifier = -5;
 
-            ArmorConfig helmet = new ArmorConfig()
+            JudeArmorConfig helmet = new JudeArmorConfig()
             {
                 prefabName = "ArmorPlateIronHelmetJD",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
@@ -43,22 +43,22 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig chest = new ArmorConfig()
+            JudeArmorConfig chest = new JudeArmorConfig()
             {
                 prefabName = "ArmorPlateIronChestJD",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 25, amountPerLevel = 8
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
@@ -66,22 +66,22 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig legs = new ArmorConfig()
+            JudeArmorConfig legs = new JudeArmorConfig()
             {
                 prefabName = "ArmorPlateIronLegsJD",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 25, amountPerLevel = 8
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 5, amountPerLevel = 1
                         }
@@ -89,27 +89,27 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig cape = new ArmorConfig()
+            JudeArmorConfig cape = new JudeArmorConfig()
             {
                 prefabName = "ArmorPlateCape",
                 armor = 4,
                 weight = 8,
                 movementSpeedModifier = -3,
                 countsTowardsSetBonus = false,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "piece_workbench",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "TrophyBoar", amount = 3, amountPerLevel = 1
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 2, amountPerLevel = 1
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LeatherScraps", amount = 10, amountPerLevel = 5
                         }

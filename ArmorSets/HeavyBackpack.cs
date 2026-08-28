@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class HeavyBackpack : ArmorSetConfig
+    public class HeavyBackpack : JudeArmorSetConfig
     {
         public HeavyBackpack()
         {
@@ -12,7 +12,7 @@ namespace JudesEquipment.ArmorSets
                 carryWeightModifier = 200
             };
 
-            ArmorConfig bag = new ArmorConfig()
+            JudeArmorConfig bag = new JudeArmorConfig()
             {
                 prefabName = "BackpackHeavy",
                 armor = 0,
@@ -20,24 +20,24 @@ namespace JudesEquipment.ArmorSets
                 movementSpeedModifier = -5,
                 baseDurability = 100,
                 durabilityPerLevel = 100,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "piece_workbench",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Wood", amount = 20, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "DeerHide", amount = 5, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "IronNails", amount = 10, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 2, amountPerLevel = 1
                         }

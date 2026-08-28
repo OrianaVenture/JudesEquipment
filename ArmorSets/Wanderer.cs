@@ -3,7 +3,7 @@ using JudesEquipment.Configuration;
 
 namespace JudesEquipment.ArmorSets
 {
-    public class Wanderer : ArmorSetConfig
+    public class Wanderer : JudeArmorSetConfig
     {
         public Wanderer()
         {
@@ -22,25 +22,25 @@ namespace JudesEquipment.ArmorSets
             int weight = 10;
             int movementModifier = -3;
 
-            ArmorConfig helmet = new ArmorConfig()
+            JudeArmorConfig helmet = new JudeArmorConfig()
             {
                 prefabName = "ArmorWandererHelmet",
                 armor = armor,
                 weight = weight,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Flax", amount = 15, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 10, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 10, amountPerLevel = 3
                         }
@@ -48,22 +48,22 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig chest = new ArmorConfig()
+            JudeArmorConfig chest = new JudeArmorConfig()
             {
                 prefabName = "ArmorWandererChest",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 10, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 20, amountPerLevel = 10
                         }
@@ -71,22 +71,22 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig legs = new ArmorConfig()
+            JudeArmorConfig legs = new JudeArmorConfig()
             {
                 prefabName = "ArmorWandererLegs",
                 armor = armor,
                 weight = weight,
                 movementSpeedModifier = movementModifier,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "forge",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 10, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 20, amountPerLevel = 10
                         }
@@ -94,26 +94,26 @@ namespace JudesEquipment.ArmorSets
                 }
             };
 
-            ArmorConfig cape = new ArmorConfig()
+            JudeArmorConfig cape = new JudeArmorConfig()
             {
                 prefabName = "ArmorWandererCape",
                 armor = 2,
                 weight = 5,
                 countsTowardsSetBonus = false,
-                recipe = new RecipeConfig()
+                recipe = new JudeRecipeConfig()
                 {
                     station = "piece_workbench",
-                    requirements = new List<RecipeConfig.RequirementConfig>()
+                    requirements = new List<JudeRecipeConfig.RequirementConfig>()
                     {
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Flax", amount = 15, amountPerLevel = 5
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "Iron", amount = 10, amountPerLevel = 3
                         },
-                        new RecipeConfig.RequirementConfig()
+                        new JudeRecipeConfig.RequirementConfig()
                         {
                             item = "LinenThread", amount = 10, amountPerLevel = 3
                         }

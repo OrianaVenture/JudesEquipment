@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace JudesEquipment.Configuration
 {
-    public class PrefabConfig
+    public class JudePrefabConfig
     {
         public GameObject prefab;
         public bool replaceMat = true;
-        
+
         public GameObject GetPrefab()
         {
-            if(prefab == null)
+            if (prefab == null)
             {
                 Main.log.LogWarning("prefab null");
                 return null;
@@ -31,12 +31,12 @@ namespace JudesEquipment.Configuration
             stats.m_name = nameToken;
             stats.m_description = descriptionToken;
 
-            if(replaceMat)
+            if (replaceMat)
             {
                 ReplaceMaterials();
             }
 
-            if(!Main.hugosCollidersAvaiable && drop.m_itemData.m_shared.m_itemType != ItemDrop.ItemData.ItemType.Shoulder)
+            if (!Main.hugosCollidersAvaiable && drop.m_itemData.m_shared.m_itemType != ItemDrop.ItemData.ItemType.Shoulder)
             {
                 prefab.GetComponentsInChildren<Cloth>(true).ToList().ForEach(cloth => UnityEngine.Object.Destroy(cloth));
             }
@@ -110,6 +110,7 @@ namespace JudesEquipment.Configuration
 
                     matIndex += 1;
                 }
+
                 r.materials = mats.ToArray();
             }
 

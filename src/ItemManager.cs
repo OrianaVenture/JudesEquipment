@@ -1,97 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using JudesEquipment.Configuration;
+using Jotunn.Entities;
+using System;
 
 namespace JudesEquipment
 {
     public static class ItemManager
     {
-        public static Transform cloneContainer;
-        
-        public static Transform GetCloneHolder()
-        {
-            if (cloneContainer == null)
-            {
-                cloneContainer = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
-                UnityEngine.Object.DontDestroyOnLoad(cloneContainer);
-                cloneContainer.gameObject.SetActive(false);
-                return cloneContainer;
-            }
-            return cloneContainer;
-        }
-
-        public static List<PrefabConfig> prefabs = new List<PrefabConfig>();
+        public static List<JudePrefabConfig> prefabs = new List<JudePrefabConfig>();
         public static List<StatusEffect> customSEs = new List<StatusEffect>();
         public static List<BlacksmithsToolsConfig> bsmithCfgs = new List<BlacksmithsToolsConfig>();
         public static Dictionary<string, Dictionary<string, string>> colorConfig = new Dictionary<string, Dictionary<string, string>>
-		{
-			{ "ArmorBarbarianBronzeHelmetJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
-			{ "ArmorBarbarianBronzeChestJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
-			{ "ArmorBarbarianBronzeLegsJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
+        {
+            { "ArmorBarbarianBronzeHelmetJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
+            { "ArmorBarbarianBronzeChestJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
+            { "ArmorBarbarianBronzeLegsJD", new Dictionary<string, string> { { "Color 1", "#FF892A" }, { "Color 2", "#FFFFFF" } } },
 
-			{ "ArmorWarriorHelmet", new Dictionary<string, string> { { "Color 1", "#FF892A" } } }, 
-			{ "ArmorWarriorChest", new Dictionary<string, string> { { "Color 1", "#FF892A" } } },
+            { "ArmorWarriorHelmet", new Dictionary<string, string> { { "Color 1", "#FF892A" } } }, 
+            { "ArmorWarriorChest", new Dictionary<string, string> { { "Color 1", "#FF892A" } } },
 
-			{ "ArmorPlateIronHelmetJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
-			{ "ArmorPlateIronChestJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
-			{ "ArmorPlateIronLegsJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+            { "ArmorPlateIronHelmetJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+            { "ArmorPlateIronChestJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+            { "ArmorPlateIronLegsJD", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
 
-			{ "ArmorDragonslayerHelmet", new Dictionary<string, string> { { "Color 1", "#373737" } } },
-			{ "ArmorDragonslayerChest", new Dictionary<string, string> { { "Color 1", "#373737" } } },
-			{ "ArmorDragonslayerLegs", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+            { "ArmorDragonslayerHelmet", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+            { "ArmorDragonslayerChest", new Dictionary<string, string> { { "Color 1", "#373737" } } },
+            { "ArmorDragonslayerLegs", new Dictionary<string, string> { { "Color 1", "#373737" } } },
 
-			{ "ArmorWandererChest", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
-			{ "ArmorWandererLegs", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+            { "ArmorWandererChest", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
+            { "ArmorWandererLegs", new Dictionary<string, string> { { "Color 1", "#FFFFFF" } } },
 
-			{ "ArmorBlackmetalgarbHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
-			{ "ArmorBlackmetalgarbChest", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
-			{ "ArmorBlackmetalgarbLegs", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+            { "ArmorBlackmetalgarbHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+            { "ArmorBlackmetalgarbChest", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
+            { "ArmorBlackmetalgarbLegs", new Dictionary<string, string> { { "Color 1", "#264C35" } } },
 
-			{ "ArmorSerpentHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
-			{ "ArmorSerpentChest", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
-			{ "ArmorSerpentLegs", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+            { "ArmorSerpentHelmet", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+            { "ArmorSerpentChest", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
+            { "ArmorSerpentLegs", new Dictionary<string, string> { { "Color 1", "#264C35" }, { "Color 2", "#FFFFFF" } } },
 
-			{ "ArmorMistlandsHelmet", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
-			{ "ArmorMistlandsChest", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
-			{ "ArmorMistlandsLegs", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } }
+            { "ArmorMistlandsHelmet", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
+            { "ArmorMistlandsChest", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } },
+            { "ArmorMistlandsLegs", new Dictionary<string, string> { { "Color 1", "#545454" }, { "Emission color", "#BF3000" } } }
         };
 
-		public static void AddItemsToDBs(ObjectDB odb)
+        public static void AddItems()
         {
             LoadPrefabsFromBundle();
-            foreach(PrefabConfig prefab in prefabs)
+
+            foreach (JudePrefabConfig prefab in prefabs)
             {
                 if (prefab.GetPrefab() == null) continue;
 
-                if (!odb.m_itemByHash.ContainsKey(prefab.GetPrefab().name.GetStableHashCode()))
-                {
-                    odb.m_itemByHash.Add(prefab.GetPrefab().name.GetStableHashCode(), prefab.GetPrefab());
-                }
+                CustomItem item = new CustomItem(prefab.GetPrefab(), false);
 
-                if (!odb.m_items.Contains(prefab.GetPrefab()))
-                {
-                    odb.m_items.Add(prefab.GetPrefab());
-                }
-
-                if (ZNetScene.instance != null)
-                {
-                    if (!ZNetScene.instance.m_prefabs.Contains(prefab.GetPrefab()))
-                    {
-                        ZNetScene.instance.m_prefabs.Add(prefab.GetPrefab());
-                    }
-
-                    if (!ZNetScene.instance.m_namedPrefabs.ContainsKey(prefab.GetPrefab().name.GetStableHashCode()))
-                    {
-                        ZNetScene.instance.m_namedPrefabs.Add(prefab.GetPrefab().name.GetStableHashCode(), prefab.GetPrefab());
-                    }
-                }
+                Jotunn.Managers.ItemManager.Instance.AddItem(item);
             }
 
-            customSEs.ForEach(se => { if (!odb.m_StatusEffects.Contains(se)) odb.m_StatusEffects.Add(se); });
+            /*customSEs.ForEach(se =>
+            {
+                CustomStatusEffect effect = new CustomStatusEffect(se, false);
+                Jotunn.Managers.ItemManager.Instance.AddStatusEffect(effect);
+            });*/
+
+            Jotunn.Managers.ItemManager.OnItemsRegistered += UpdateOnLoad;
+        }
+
+        private static void UpdateOnLoad()
+        {
+            Main.ModConfig.ApplyArmorConfigs();
+            Main.ModConfig.ApplyRecipeConfigs();
+            Main.ModConfig.ApplySetEffects();
         }
 
         public static void InsertBsmithToolsCfgs()
@@ -121,11 +100,12 @@ namespace JudesEquipment
         {
             AssetBundle bundle = Util.LoadBundle(Main.bundleName);
 
-            ItemManager.prefabs.Clear();
-            allPrefabs.ForEach(_prefab => ItemManager.prefabs.Add(new PrefabConfig()
+            prefabs.Clear();
+            allPrefabs.ForEach(_prefab => prefabs.Add(new JudePrefabConfig()
             {
                 prefab = bundle.LoadAsset<GameObject>(_prefab)
             }));
+
             bundle.Unload(false);
         }
 
